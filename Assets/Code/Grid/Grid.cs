@@ -12,6 +12,9 @@ namespace grid
         private List<Mass> m_DynamicPoints = null;
         private List<Mass> m_AnchorPoints = null;
 
+        public List<Mass> DynamicPoints { get { return m_DynamicPoints; } }
+        public List<Spring> Springs { get { return m_Springs; } }
+
         [SerializeField]
         private float m_Spacing = 100.0f;
 

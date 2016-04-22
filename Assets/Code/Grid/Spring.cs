@@ -15,6 +15,9 @@ namespace grid
         private float m_Stiffness;
         private float m_Dampening;
 
+        public Mass ConnectionOne { get { return m_Connections[0]; } }
+        public Mass ConnectionTwo { get { return m_Connections[1]; } }
+
         /// <summary>
         /// Constructor
         /// </summary>
