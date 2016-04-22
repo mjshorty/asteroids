@@ -13,7 +13,7 @@ namespace grid
         private List<Mass> m_AnchorPoints = null;
 
         [SerializeField]
-        private float m_Spacing;
+        private float m_Spacing = 100.0f;
 
         [SerializeField]
         private float m_Mass = 1.0f;
@@ -133,6 +133,71 @@ namespace grid
             {
                 Mass mass = m_DynamicPoints[i] as Mass;
                 mass.Update();
+            }
+        }
+
+        /// <summary>
+        /// Apply a directed force to the grid
+        /// </summary>
+        /// <param name="force">The force to apply</param>
+        /// <param name="position">The origin of the force</param>
+        /// <param name="radius">The radius of the force</param>
+        public void ApplyDirectedForce(Vector3 force, Vector3 position, float radius)
+        {
+            float squareRadius = radius * radius;
+
+            int numMasses = m_DynamicPoints.Count;
+            for (int i = 0; i < numMasses; ++i)
+            {
+                Vector3 posToMass = position - m_DynamicPoints[i].Position;
+                if (posToMass.sqrMagnitude < squareRadius)
+                {
+                    m_DynamicPoints[i].ApplyForce(10.0f * force / (10.0f + posToMass.magnitude));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Apply an implosive force to the grid
+        /// </summary>
+        /// <param name="force">The force to apply</param>
+        /// <param name="position">The origin of the force</param>
+        /// <param name="radius">The radius of the force</param>
+        public void ApplyImplosiveForce(float force, Vector3 position, float radius)
+        {
+            float squareRadius = radius * radius;
+
+            int numMasses = m_DynamicPoints.Count;
+            for (int i = 0; i < numMasses; ++i)
+            {
+                Vector3 posToMass = position - m_DynamicPoints[i].Position;
+                if (posToMass.sqrMagnitude < squareRadius)
+                {
+                    m_DynamicPoints[i].ApplyForce(10.0f * force * posToMass / (100 + posToMass.sqrMagnitude));
+                    m_DynamicPoints[i].ModifyDampening(0.6f);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Apply an explosive force to the groid
+        /// </summary>
+        /// <param name="force">The force to apply</param>
+        /// <param name="position">The origin of the force</param>
+        /// <param name="radius">The radius of the force</param>
+        public void ApplyExplosiveForce(float force, Vector3 position, float radius)
+        {
+            float squareRadius = radius * radius;
+
+            int numMasses = m_DynamicPoints.Count;
+            for (int i = 0; i < numMasses; ++i)
+            {
+                Vector3 posToMass = position - m_DynamicPoints[i].Position;
+                if (posToMass.sqrMagnitude < squareRadius)
+                {
+                    m_DynamicPoints[i].ApplyForce(100 * force * posToMass / (10000 + posToMass.sqrMagnitude));
+                    m_DynamicPoints[i].ModifyDampening(0.6f);
+                }
             }
         }
     }
