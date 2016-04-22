@@ -6,7 +6,7 @@ namespace grid
     /// <summary>
     /// Generate a grid of points of mass interconnected with springs
     /// </summary>
-    public class Generator : MonoBehaviour
+    public class Grid : MonoBehaviour
     {
         private List<Spring> m_Springs = null;
         private List<Mass> m_DynamicPoints = null;
