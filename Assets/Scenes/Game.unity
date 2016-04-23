@@ -129,9 +129,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Prefab: {fileID: 144136, guid: 7cec91f66c4214e44a28e41b5e0605fe, type: 2}
+  SpawnRange: {x: 500, y: 500}
+  m_NumberToSpawn: 3
   m_MaxSpawnCount: 10
-  m_SpawnOnTimeElapsed: 1
-  m_SpawnTimer: 2
+  m_IncreaseSpawnCountByScore: 1000
+  m_SpawnWaitTime: 1
+  m_MiniPrefab: {fileID: 0}
+  m_MinimumVelocityScalar: 0.65
+  m_MaximumVelocityScalar: 1
 --- !u!1 &1063233871
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +231,22 @@ Prefab:
     - target: {fileID: 495182, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 404354, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 404354, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404354, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11492720, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
+      propertyPath: m_FireRate
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}

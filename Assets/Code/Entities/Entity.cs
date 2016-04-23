@@ -17,10 +17,6 @@ namespace entity
         protected Vector3 m_Acceleration = Vector3.zero;
         protected Vector3 m_Velocity = Vector3.zero;
 
-        void Start()
-        {
-        }
-
         virtual protected void UpdateEntity() {}
 
         private void UpdatePosition()
