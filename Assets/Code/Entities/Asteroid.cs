@@ -5,17 +5,14 @@ namespace entity
 {
     public class Asteroid : Entity
     {
+        [SerializeField]
+        private Vector3 m_ConstantVelocity = Vector3.one;
 
-        // Use this for initialization
-        void Start()
+        public Vector3 ConstantVelocity { get { return m_ConstantVelocity; } set { m_ConstantVelocity = value; } }
+
+        override protected void UpdateEntity()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            m_Velocity = m_ConstantVelocity;
         }
     }
 }

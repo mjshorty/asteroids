@@ -8,12 +8,6 @@ namespace entity
         [SerializeField]
         private float m_RotationSpeed = 10.0f;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
         // Update is called once per frame
         override protected void UpdateEntity()
         {
