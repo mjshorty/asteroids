@@ -43,10 +43,10 @@ namespace spawn
             //numToSpawn += currentScore % m_IncreaseSpawnCountByScore;
             numToSpawn = Mathf.Min(numToSpawn, m_MaxSpawnCount);
 
-            Spawn(numToSpawn);
+            Spawn(numToSpawn, m_Prefab);
         }
 
-        private void Spawn(int count)
+        protected void Spawn(int count, GameObject prefab)
         {
             for (int i = 0; i < count; ++i)
             {
