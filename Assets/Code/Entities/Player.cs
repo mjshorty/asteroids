@@ -5,6 +5,8 @@ namespace entity
 {
     public class Player : Entity
     {
+        [SerializeField]
+        private float m_RotationSpeed = 10.0f;
 
         // Use this for initialization
         void Start()
@@ -20,17 +22,23 @@ namespace entity
 
         private void UpdateInput()
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+            if(Input.GetKey(KeyCode.UpArrow))
             {
-                m_Acceleration += transform.forward.normalized * 10.0f;
+                float rotation = transform.rotation.eulerAngles.z;
+                Vector3 acceleration = Vector3.zero;
+
+                acceleration.x += Mathf.Sin(Mathf.Deg2Rad * rotation);
+                acceleration.y += -Mathf.Cos(Mathf.Deg2Rad * rotation);
+
+                m_Acceleration += acceleration * 10.0f;
             }
-            else if(Input.GetKeyDown(KeyCode.RightArrow))
+            else if(Input.GetKey(KeyCode.RightArrow))
             {
-                transform.Rotate(0.0f, 0.0f, Time.deltaTime);
+                transform.Rotate(0.0f, 0.0f, -Time.deltaTime * m_RotationSpeed);
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                transform.Rotate(0.0f, 0.0f, -Time.deltaTime);
+                transform.Rotate(0.0f, 0.0f, Time.deltaTime * m_RotationSpeed);
             }
         }
     }
