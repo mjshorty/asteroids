@@ -25,25 +25,29 @@ namespace spawn
                 spawn.transform.parent = transform;
 
                 entity.Asteroid asteroid = spawn.GetComponent<entity.Asteroid>();
-
-                float scalar = 0.0f;
-                if(Random.Range(0, 2) == 0)
-                {
-                    scalar = Random.Range(m_MinimumVelocityScalar, m_MaximumVelocityScalar);
-                }
-                else
-                {
-                    scalar = Random.Range(-m_MaximumVelocityScalar, -m_MinimumVelocityScalar);
-                }
-
-                asteroid.ConstantVelocity = asteroid.ConstantVelocity * scalar;
+                asteroid.ConstantVelocity = asteroid.ConstantVelocity * GetVelocityScalar();
             }
         }
 
         override protected void OnSpawn(GameObject spawn)
         {
             entity.Asteroid asteroid = spawn.GetComponent<entity.Asteroid>();
-            asteroid.ConstantVelocity = asteroid.ConstantVelocity * Random.Range(-1.0f, 1.0f);
+            asteroid.ConstantVelocity = asteroid.ConstantVelocity * GetVelocityScalar();
+        }
+
+        private float GetVelocityScalar()
+        {
+            float scalar = 0.0f;
+            if (Random.Range(0, 2) == 0)
+            {
+                scalar = Random.Range(m_MinimumVelocityScalar, m_MaximumVelocityScalar);
+            }
+            else
+            {
+                scalar = Random.Range(-m_MaximumVelocityScalar, -m_MinimumVelocityScalar);
+            }
+
+            return scalar;
         }
     }
 }

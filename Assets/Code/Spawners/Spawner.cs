@@ -9,6 +9,9 @@ namespace spawn
         private GameObject m_Prefab = null;
 
         [SerializeField]
+        private Vector2 SpawnRange = new Vector2(500.0f, 500.0f);
+
+        [SerializeField]
         private int m_NumberToSpawn = 3;
 
         [SerializeField]
@@ -53,8 +56,8 @@ namespace spawn
                 Camera cam = Camera.main;
                 Vector3 position = Vector3.zero;
 
-                position.x = Random.Range(-300, 300);
-                position.y = Random.Range(-300, 300);
+                position.x = Random.Range(-SpawnRange.x, SpawnRange.x);
+                position.y = Random.Range(-SpawnRange.y, SpawnRange.y);
 
                 Quaternion rotation = Quaternion.identity;
                 GameObject spawn = GameObject.Instantiate(m_Prefab, position, rotation) as GameObject;
