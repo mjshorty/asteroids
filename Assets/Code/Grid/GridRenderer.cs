@@ -16,6 +16,9 @@ namespace grid
         [SerializeField]
         private Color m_LineColour = Color.blue;
 
+        [SerializeField]
+        private Material m_Material = null;
+
         /// <summary>
         /// Initialise the mesh renderer
         /// </summary>
@@ -27,6 +30,10 @@ namespace grid
             {
                 m_Renderer = gameObject.AddComponent<LineRenderer>();
             }
+
+            m_Renderer.material = m_Material;
+            m_Renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            m_Renderer.receiveShadows = false;
 
             m_Grid = GetComponent<Grid>();
             if(m_Grid == null)
@@ -46,7 +53,15 @@ namespace grid
             m_Renderer.SetWidth(m_LineWidth, m_LineWidth);
             m_Renderer.SetVertexCount(m_Vertices.Count);
             m_Renderer.SetPositions(m_Vertices.ToArray());
-            m_Renderer.SetColors(m_LineColour, m_LineColour);
+
+            if(m_Material)
+            {
+                m_Material.color = m_LineColour;
+            }
+            else
+            {
+                m_Renderer.SetColors(m_LineColour, m_LineColour);
+            }
         }
 
         /// <summary>

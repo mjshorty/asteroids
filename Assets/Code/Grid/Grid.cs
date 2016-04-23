@@ -49,17 +49,21 @@ namespace grid
             m_DynamicPoints = new List<Mass>();
             m_AnchorPoints = new List<Mass>();
 
+            Vector3 offset = Vector3.zero;
+            offset.x = (numColumns * m_Spacing) * 0.5f;
+            offset.y = (numRows * m_Spacing) * 0.5f;
+
             for (int y = 0; y < numRows; ++y)
             {
                 for (int x = 0; x < numColumns; ++x)
                 {
                     Vector3 position = new Vector3(x * m_Spacing, y * m_Spacing, 0.0f);
 
-                    m_DynamicPoints.Add(new Mass(position, 1.0f / m_Mass));
+                    m_DynamicPoints.Add(new Mass(position - offset, 1.0f / m_Mass));
 
                     // its a bit wastefull creating all these anchor points when we only need the outside ones
                     // and then every 3x3, maybe we can be a bit smarter about this.
-                    m_AnchorPoints.Add(new Mass(position, 0.0f));
+                    m_AnchorPoints.Add(new Mass(position - offset, 0.0f));
                 }
             }
         }
