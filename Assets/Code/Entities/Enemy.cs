@@ -37,9 +37,7 @@ namespace entity
             }
 
             // find the direction to the player
-            
-
-            //sQuaternion.Lerp(transform.rotation, targetRotation, m_Acceleration * Time.deltaTime);
+            //Quaternion.Lerp(transform.rotation, targetRotation, m_Acceleration * Time.deltaTime);
 
             // find our direction
             float rotation = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;

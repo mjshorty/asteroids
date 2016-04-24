@@ -14,20 +14,34 @@ namespace entity
         [SerializeField]
         public List<Weapon> m_Weapons = new List<Weapon>();
 
+        [SerializeField]
+        public GameObject m_OnDeathEffectPrefab = null;
+
         public int Lives
         {
             get { return m_Lives; }
             set
             {
+                bool lifeLost = value < m_Lives;
                 m_Lives = value;
-                if (m_Lives == 0)
+
+                if (lifeLost)
                 {
-                    OnDeath();
-                    GameObject.Destroy(gameObject);
-                }
-                else
-                {
-                    ResetEntity();
+                    if (m_OnDeathEffectPrefab)
+                    {
+                        GameObject effectGO = GameObject.Instantiate(m_OnDeathEffectPrefab) as GameObject;
+                        effectGO.transform.position = transform.position;
+                    }
+
+                    if (m_Lives == 0)
+                    {
+                        OnDeath();
+                        GameObject.Destroy(gameObject);
+                    }
+                    else
+                    {
+                        ResetEntity();
+                    }
                 }
             }
         }

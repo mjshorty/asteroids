@@ -196,6 +196,8 @@ MonoBehaviour:
   m_Lives: 3
   m_Weapons:
   - {fileID: 11492720}
+  m_OnDeathEffectPrefab: {fileID: 136424, guid: b6958fc5b2efd3b468472e63729a6b03,
+    type: 2}
   m_InitialHealth: 100
   m_RotationSpeed: 80
 --- !u!114 &11492720
