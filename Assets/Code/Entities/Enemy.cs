@@ -37,8 +37,8 @@ namespace entity
             float rotation = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
             Vector3 direction = Vector3.zero;
 
-            direction.x += Mathf.Sin(rotation);
-            direction.y += -Mathf.Cos(rotation);
+            direction.x -= Mathf.Sin(rotation);
+            direction.y += Mathf.Cos(rotation);
 
             // find the direction to the player
             Vector3 dirToPlayer = Vector3.Normalize(target.transform.position - transform.position);

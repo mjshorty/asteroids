@@ -34,8 +34,8 @@ namespace entity
                 float rotation = transform.rotation.eulerAngles.z;
                 Vector3 acceleration = Vector3.zero;
 
-                acceleration.x += Mathf.Sin(Mathf.Deg2Rad * rotation);
-                acceleration.y += -Mathf.Cos(Mathf.Deg2Rad * rotation);
+                acceleration.x -= Mathf.Sin(Mathf.Deg2Rad * rotation);
+                acceleration.y += Mathf.Cos(Mathf.Deg2Rad * rotation);
 
                 m_Acceleration += acceleration * 10.0f;
             }

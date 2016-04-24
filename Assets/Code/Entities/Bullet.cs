@@ -42,8 +42,8 @@ namespace entity
 
         private void CalculatePosition()
         {
-            float x = Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
-            float y = -Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
+            float x = -Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
+            float y = Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
 
             Vector3 vel = Vector3.zero;
             vel.x += m_Velocity * Time.deltaTime * x;
