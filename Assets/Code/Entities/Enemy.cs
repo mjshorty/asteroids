@@ -6,6 +6,9 @@ namespace entity
     public class Enemy : Entity
     {
         [SerializeField]
+        private float m_PositionalAcceleration = 10.0f;
+
+        [SerializeField]
         private float m_RotationAcceleration = 10.0f;
 
         [SerializeField]
@@ -46,9 +49,15 @@ namespace entity
             direction.x -= Mathf.Sin(rotation);
             direction.y += Mathf.Cos(rotation);
 
-            Vector3 dirToPlayer = Vector3.Normalize(target.transform.position - transform.position);
+            // find out where we are in relation to the player
+            Vector3 dirToPlayer = target.transform.position - transform.position;
 
-            float meDotTarget = Vector3.Dot(direction, dirToPlayer);
+            // move towards the player
+            m_Acceleration.x += dirToPlayer.normalized.x * m_PositionalAcceleration;
+            m_Acceleration.y += dirToPlayer.normalized.y * m_PositionalAcceleration;
+
+            // if we are in view of the player fire
+            float meDotTarget = Vector3.Dot(direction, dirToPlayer.normalized);
             if(meDotTarget > m_Accuracy)
             {
                 FireWeapons();
