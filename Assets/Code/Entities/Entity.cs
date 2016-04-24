@@ -15,7 +15,30 @@ namespace entity
         public List<Weapon> m_Weapons = new List<Weapon>();
 
         [SerializeField]
-        public GameObject m_OnDeathEffectPrefab = null;
+        private GameObject m_OnDeathEffectPrefab = null;
+
+        [SerializeField]
+        private grid.Grid.Force m_GridForce = grid.Grid.Force.Explosion;
+
+        [SerializeField]
+        private float m_GridForceRadius = 10.0f;
+
+        [SerializeField]
+        private float m_GridForceMagnitude = 100.0f;
+
+        private grid.Grid m_Grid = null;
+
+        [SerializeField]
+        protected int m_InitialHealth = 100;
+
+        protected Vector3 m_Acceleration = Vector3.zero;
+        protected Vector3 m_Velocity = Vector3.zero;
+        protected int m_Health = 100;
+
+        protected Vector3 m_InitialPosition = Vector3.zero;
+        protected Quaternion m_InitialRotation = Quaternion.identity;
+
+        public float HealthPercentage { get { return (float)m_Health / (float)m_InitialHealth; } }
 
         public int Lives
         {
@@ -33,6 +56,28 @@ namespace entity
                         effectGO.transform.position = transform.position;
                     }
 
+                    if(m_Grid)
+                    {
+                        if (m_GridForce == grid.Grid.Force.Explosion)
+                        {
+                            m_Grid.ApplyExplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
+                        }
+                        else if(m_GridForce == grid.Grid.Force.Implosion)
+                        {
+                            m_Grid.ApplyImplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
+                        }
+                        else
+                        {
+                            float rotation = transform.rotation.z * Mathf.Deg2Rad;
+                            Vector3 direction = Vector3.zero;
+
+                            direction.x -= Mathf.Sin(rotation);
+                            direction.y += Mathf.Cos(rotation);
+
+                            m_Grid.ApplyDirectedForce(direction * m_GridForceMagnitude, transform.position, m_GridForceRadius);
+                        }
+                    }
+
                     if (m_Lives == 0)
                     {
                         OnDeath();
@@ -46,20 +91,10 @@ namespace entity
             }
         }
 
-        [SerializeField]
-        protected int m_InitialHealth = 100;
-
-        protected Vector3 m_Acceleration = Vector3.zero;
-        protected Vector3 m_Velocity = Vector3.zero;
-        protected int m_Health = 100;
-
-        protected Vector3 m_InitialPosition = Vector3.zero;
-        protected Quaternion m_InitialRotation = Quaternion.identity;
-
-        public float HealthPercentage { get { return (float)m_Health / (float)m_InitialHealth; } }
-
         void Start()
         {
+            m_Grid = FindObjectOfType<grid.Grid>();
+
             m_InitialPosition = transform.position;
             m_InitialRotation = transform.rotation;
 

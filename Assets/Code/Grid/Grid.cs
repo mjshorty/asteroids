@@ -8,6 +8,13 @@ namespace grid
     /// </summary>
     public class Grid : MonoBehaviour
     {
+        public enum Force
+        {
+            Explosion,
+            Implosion,
+            Directed
+        }
+
         private List<Spring> m_Springs = null;
         private List<Mass> m_DynamicPoints = null;
         private List<Mass> m_AnchorPoints = null;

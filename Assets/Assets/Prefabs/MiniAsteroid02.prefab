@@ -122,6 +122,9 @@ MonoBehaviour:
   m_Weapons: []
   m_OnDeathEffectPrefab: {fileID: 136424, guid: 458b4725bc3a98149b0c310aa52b1989,
     type: 2}
+  m_GridForce: 0
+  m_GridForceRadius: 50
+  m_GridForceMagnitude: 50
   m_InitialHealth: 25
   m_ConstantVelocity: {x: 60, y: 60, z: 0}
   m_AwardOnKill: 2000
