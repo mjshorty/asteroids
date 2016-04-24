@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 407384}
   - 114: {fileID: 11474224}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SimpleEnemyWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 54: {fileID: 5418140}
   m_Layer: 9
   m_Name: BigSpaceship
-  m_TagString: Asteroid
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Dampening: 0.95
   m_Lives: 1
   m_Weapons:
-  - {fileID: 0}
+  - {fileID: 11474224}
   m_InitialHealth: 200
   Acceleration: 5
 --- !u!114 &11474224
