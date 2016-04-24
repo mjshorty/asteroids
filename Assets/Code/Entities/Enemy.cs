@@ -6,7 +6,10 @@ namespace entity
     public class Enemy : Entity
     {
         [SerializeField]
-        private float Acceleration = 10.0f;
+        private float m_RotationAcceleration = 10.0f;
+
+        [SerializeField]
+        private float m_Accuracy = 0.25f;
 
         protected List<Player> m_Targets = new List<Player>();
 
@@ -33,6 +36,11 @@ namespace entity
                 return;
             }
 
+            // find the direction to the player
+            
+
+            //sQuaternion.Lerp(transform.rotation, targetRotation, m_Acceleration * Time.deltaTime);
+
             // find our direction
             float rotation = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
             Vector3 direction = Vector3.zero;
@@ -40,11 +48,10 @@ namespace entity
             direction.x -= Mathf.Sin(rotation);
             direction.y += Mathf.Cos(rotation);
 
-            // find the direction to the player
             Vector3 dirToPlayer = Vector3.Normalize(target.transform.position - transform.position);
 
             float meDotTarget = Vector3.Dot(direction, dirToPlayer);
-            if(meDotTarget > 0.5f)
+            if(meDotTarget > m_Accuracy)
             {
                 FireWeapons();
             }

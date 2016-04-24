@@ -183,7 +183,6 @@ MonoBehaviour:
   m_SpawnWaitTime: 1
   m_MaxSpawnCount: 10
   m_IncreaseSpawnCountByScore: 27000
-  m_MiniPrefab: {fileID: 139972, guid: a74dc3db24a708140868344eb6ef7c49, type: 2}
   m_MinimumVelocityScalar: 0.65
   m_MaximumVelocityScalar: 1
 --- !u!1 &1063233871
@@ -280,10 +279,6 @@ Prefab:
     - target: {fileID: 495182, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 139994, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
