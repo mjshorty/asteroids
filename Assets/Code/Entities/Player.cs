@@ -11,6 +11,23 @@ namespace entity
         [SerializeField]
         private List<Weapon> m_Weapons = new List<Weapon>();
 
+        void OnTriggerEnter(Collider collision)
+        {
+            GameObject collider = collision.gameObject;
+            if(collider.tag == "Asteroid" || collider.tag == "Enemy")
+            {
+                --m_Lives;
+                if (m_Lives == 0)
+                {
+                    // game over
+                }
+                else
+                {
+                    ResetEntity();
+                }
+            }
+        }
+
         // Update is called once per frame
         override protected void UpdateEntity()
         {

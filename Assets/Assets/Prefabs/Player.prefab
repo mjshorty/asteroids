@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 404354}
   - 114: {fileID: 11492720}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SimpleWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,9 +27,11 @@ GameObject:
   - 114: {fileID: 11426262}
   - 33: {fileID: 3383268}
   - 23: {fileID: 2382138}
-  m_Layer: 0
+  - 65: {fileID: 6549582}
+  - 54: {fileID: 5426040}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495182}
@@ -92,6 +94,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139994}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &5426040
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139994}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6549582
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139994}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &11426262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Dampening: 0.97
   m_Lives: 3
-  m_Health: 100
+  m_InitialHealth: 100
   m_RotationSpeed: 60
   m_Weapons:
   - {fileID: 11492720}
@@ -121,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BulletPrefab: {fileID: 134890, guid: 2c6d1aac7de9b944896a2812668ed0e5, type: 2}
-  m_FireRate: 1
+  m_FireRate: 0.5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

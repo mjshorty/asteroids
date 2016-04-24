@@ -14,6 +14,23 @@ namespace entity
         [SerializeField]
         private float m_Dampening = 1.0f;
 
+        void OnTriggerEnter(Collider collision)
+        {
+            GameObject collider = collision.gameObject;
+            if(collider.tag == "Enemy")
+            {
+                GameObject.Destroy(gameObject);
+
+                Enemy enemy = collider.GetComponent<Enemy>();
+                enemy.ApplyDamage(m_Damage);
+            }
+            else if(collider.tag == "Asteroid")
+            {
+                Asteroid asteroid = collider.GetComponent<Asteroid>();
+                asteroid.ApplyDamage(m_Damage);
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {

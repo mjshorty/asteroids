@@ -12,12 +12,55 @@ namespace entity
         protected int m_Lives = 1;
 
         [SerializeField]
-        protected int m_Health = 100;
+        protected int m_InitialHealth = 100;
 
         protected Vector3 m_Acceleration = Vector3.zero;
         protected Vector3 m_Velocity = Vector3.zero;
+        protected int m_Health = 100;
+
+        protected Vector3 m_InitialPosition = Vector3.zero;
+        protected Quaternion m_InitialRotation = Quaternion.identity;
+
+        void Start()
+        {
+            m_InitialPosition = transform.position;
+            m_InitialRotation = transform.rotation;
+
+            ResetEntity();
+        }
+
+        public void ApplyDamage(int damage)
+        {
+            m_Health -= damage;
+            if (m_Health <= 0)
+            {
+                --m_Lives;
+                if (m_Lives > 0)
+                {
+                    ResetEntity();
+                }
+                else
+                {
+                    GameObject.Destroy(gameObject);
+                }
+            }
+        }
 
         virtual protected void UpdateEntity() {}
+
+        virtual protected void OnResetEntity() {}
+
+        protected void ResetEntity()
+        {
+            m_Acceleration = Vector3.zero;
+            m_Velocity = Vector3.zero;
+            m_Health = m_InitialHealth;
+
+            transform.position = m_InitialPosition;
+            transform.rotation = m_InitialRotation;
+
+            OnResetEntity();
+        }
 
         private void UpdatePosition()
         {
