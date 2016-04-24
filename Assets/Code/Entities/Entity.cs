@@ -42,6 +42,8 @@ namespace entity
         protected Vector3 m_InitialPosition = Vector3.zero;
         protected Quaternion m_InitialRotation = Quaternion.identity;
 
+        public float HealthPercentage { get { return (float)m_Health / (float)m_InitialHealth; } }
+
         void Start()
         {
             m_InitialPosition = transform.position;
