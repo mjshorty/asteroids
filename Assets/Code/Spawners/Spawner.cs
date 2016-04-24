@@ -9,6 +9,9 @@ namespace spawn
         private List<GameObject> m_Prefabs = new List<GameObject>();
 
         [SerializeField]
+        private bool m_RandomPrefab = true;
+
+        [SerializeField]
         private Vector2 SpawnRange = new Vector2(500.0f, 500.0f);
 
         [SerializeField]
@@ -35,21 +38,34 @@ namespace spawn
         {
             for (int i = 0; i < count; ++i)
             {
-                foreach (GameObject prefab in prefabs)
+                if(m_RandomPrefab)
                 {
-                    Camera cam = Camera.main;
-                    Vector3 position = Vector3.zero;
-
-                    position.x = Random.Range(-SpawnRange.x, SpawnRange.x);
-                    position.y = Random.Range(-SpawnRange.y, SpawnRange.y);
-
-                    Quaternion rotation = Quaternion.identity;
-                    GameObject spawn = GameObject.Instantiate(prefab, position, rotation) as GameObject;
-                    spawn.transform.parent = transform;
-
-                    OnSpawn(spawn);
+                    GameObject prefab = prefabs[Random.Range(0, prefabs.Count)];
+                    Spawn(prefab);
+                }
+                else
+                {
+                    foreach (GameObject prefab in prefabs)
+                    {
+                        Spawn(prefab);
+                    }
                 }
             }
+        }
+
+        private void Spawn(GameObject prefab)
+        {
+            Camera cam = Camera.main;
+            Vector3 position = Vector3.zero;
+
+            position.x = Random.Range(-SpawnRange.x, SpawnRange.x);
+            position.y = Random.Range(-SpawnRange.y, SpawnRange.y);
+
+            Quaternion rotation = Quaternion.identity;
+            GameObject spawn = GameObject.Instantiate(prefab, position, rotation) as GameObject;
+            spawn.transform.parent = transform;
+
+            OnSpawn(spawn);
         }
 
         virtual protected void OnSpawn(GameObject spawn) { }

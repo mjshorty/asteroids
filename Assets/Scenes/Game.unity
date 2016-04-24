@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Prefabs:
   - {fileID: 154664, guid: 01f4838bb61d72449aed560eaebb11ec, type: 2}
   - {fileID: 140928, guid: ae36cebdec686494187f8cefd5e457ac, type: 2}
+  m_RandomPrefab: 0
   SpawnRange: {x: 500, y: 500}
   m_NumberToSpawn: 1
   m_SpawnWhenScoreIsMultipleOf: 10000
@@ -175,6 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Prefabs:
   - {fileID: 144136, guid: 7cec91f66c4214e44a28e41b5e0605fe, type: 2}
+  - {fileID: 144136, guid: 18f3dcde2796b8345bc09132222d7e83, type: 2}
+  m_RandomPrefab: 1
   SpawnRange: {x: 500, y: 500}
   m_NumberToSpawn: 3
   m_SpawnWaitTime: 1
@@ -277,6 +280,10 @@ Prefab:
     - target: {fileID: 495182, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 139994, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}

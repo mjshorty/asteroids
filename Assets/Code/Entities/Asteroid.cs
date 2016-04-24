@@ -11,6 +11,9 @@ namespace entity
         [SerializeField]
         private int m_AwardOnKill = 1000;
 
+        [SerializeField]
+        private GameObject m_MiniPrefab = null;
+
         public spawn.AsteroidSpawner Spawner { get; set; }
 
         public Vector3 ConstantVelocity { get { return m_ConstantVelocity; } set { m_ConstantVelocity = value; } }
@@ -27,7 +30,7 @@ namespace entity
 
             if (Spawner)
             {
-                Spawner.SpawnMiniAsteroid(transform.position, 4);
+                Spawner.SpawnMiniAsteroid(m_MiniPrefab, transform.position, 4);
             }
         }
     }

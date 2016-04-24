@@ -17,9 +17,6 @@ namespace spawn
         private int m_IncreaseSpawnCountByScore = 10000;
 
         [SerializeField]
-        private GameObject m_MiniPrefab = null;
-
-        [SerializeField]
         private float m_MinimumVelocityScalar = 0.65f;
 
         [SerializeField]
@@ -47,19 +44,28 @@ namespace spawn
             return numToSpawn;
         }
 
-        public void SpawnMiniAsteroid(Vector3 position, int count)
+        public void SpawnMiniAsteroid(GameObject prefab, Vector3 position, int count)
         {
             for (int i = 0; i < count; ++i)
             {
                 Camera cam = Camera.main;
 
                 Quaternion rotation = Quaternion.identity;
-                GameObject spawn = GameObject.Instantiate(m_MiniPrefab, position, rotation) as GameObject;
+                GameObject spawn = GameObject.Instantiate(prefab, position, rotation) as GameObject;
                 spawn.transform.parent = transform;
 
                 entity.Asteroid asteroid = spawn.GetComponent<entity.Asteroid>();
                 asteroid.ConstantVelocity = asteroid.ConstantVelocity * GetVelocityScalar();
                 asteroid.Spawner = null; // set the spawner to null so we dont spawn more asteroids on death
+
+                spawn.SpawnOffset offset = spawn.GetComponent<spawn.SpawnOffset>();
+                if(offset)
+                {
+                    float xOffset = i == 0 || i == 1 ? -1.0f : 1.0f;
+                    float yOffset = i == 1 || i == 2 ? -1.0f : 1.0f;
+
+                    offset.ApplyOffset(xOffset, yOffset, (float)i);
+                }
             }
         }
 
