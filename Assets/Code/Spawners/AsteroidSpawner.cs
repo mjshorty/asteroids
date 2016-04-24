@@ -6,6 +6,17 @@ namespace spawn
     public class AsteroidSpawner : Spawner
     {
         [SerializeField]
+        private float m_SpawnWaitTime = 1.0f;
+
+        private float m_ElapsedTime = 0.0f;
+
+        [SerializeField]
+        private int m_MaxSpawnCount = 10;
+
+        [SerializeField]
+        private int m_IncreaseSpawnCountByScore = 10000;
+
+        [SerializeField]
         private GameObject m_MiniPrefab = null;
 
         [SerializeField]
@@ -13,6 +24,28 @@ namespace spawn
 
         [SerializeField]
         private float m_MaximumVelocityScalar = 1.0f;
+
+        override protected bool CanSpawn()
+        {
+            if (m_ElapsedTime < m_SpawnWaitTime)
+            {
+                m_ElapsedTime += Time.deltaTime;
+                return false;
+            }
+
+            m_ElapsedTime = 0.0f;
+
+            return true;
+        }
+
+        override protected int GetSpawnCount()
+        {
+            int numToSpawn = m_NumberToSpawn;
+            numToSpawn += entity.Player.Score % m_IncreaseSpawnCountByScore;
+            numToSpawn = Mathf.Min(numToSpawn, m_MaxSpawnCount);
+
+            return numToSpawn;
+        }
 
         public void SpawnMiniAsteroid(Vector3 position, int count)
         {

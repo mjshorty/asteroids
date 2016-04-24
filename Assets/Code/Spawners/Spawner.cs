@@ -12,18 +12,7 @@ namespace spawn
         private Vector2 SpawnRange = new Vector2(500.0f, 500.0f);
 
         [SerializeField]
-        private int m_NumberToSpawn = 3;
-
-        [SerializeField]
-        private int m_MaxSpawnCount = 10;
-
-        [SerializeField]
-        private int m_IncreaseSpawnCountByScore = 1000;
-
-        [SerializeField]
-        private float m_SpawnWaitTime = 1.0f;
-
-        private float m_ElapsedTime = 0.0f;
+        protected int m_NumberToSpawn = 3;
 
         // Update is called once per frame
         void Update()
@@ -34,19 +23,12 @@ namespace spawn
                 return;
             }
 
-            if (m_ElapsedTime < m_SpawnWaitTime)
+            if(CanSpawn() == false)
             {
-                m_ElapsedTime += Time.deltaTime;
                 return;
             }
 
-            m_ElapsedTime = 0.0f;
-
-            int numToSpawn = m_NumberToSpawn;
-            //numToSpawn += currentScore % m_IncreaseSpawnCountByScore;
-            numToSpawn = Mathf.Min(numToSpawn, m_MaxSpawnCount);
-
-            Spawn(numToSpawn, m_Prefab);
+            Spawn(GetSpawnCount(), m_Prefab);
         }
 
         protected void Spawn(int count, GameObject prefab)
@@ -68,5 +50,15 @@ namespace spawn
         }
 
         virtual protected void OnSpawn(GameObject spawn) { }
+
+        virtual protected bool CanSpawn()
+        {
+            return false;
+        }
+
+        virtual protected int GetSpawnCount()
+        {
+            return m_NumberToSpawn;
+        }
     }
 }
