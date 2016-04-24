@@ -12,7 +12,7 @@ GameObject:
   - 199: {fileID: 19991344}
   - 114: {fileID: 11494778}
   m_Layer: 0
-  m_Name: Death
+  m_Name: Asteroid02Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1540,7 +1540,7 @@ ParticleSystemRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c426d12d4c80e94d94d4c3eeb0ff353, type: 2}
+  - {fileID: 2100000, guid: ad47f05b540b82c4f827af461a3a14b2, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

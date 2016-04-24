@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Dampening: 1
   m_Lives: 1
   m_Weapons: []
+  m_OnDeathEffectPrefab: {fileID: 136424, guid: 6ae7fda53adb8fb4b88ab7c52e72f118,
+    type: 2}
   m_InitialHealth: 100
   m_ConstantVelocity: {x: 60, y: 60, z: 0}
   m_AwardOnKill: 1000

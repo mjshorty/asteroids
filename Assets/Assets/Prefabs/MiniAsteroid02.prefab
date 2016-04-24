@@ -120,9 +120,12 @@ MonoBehaviour:
   m_Dampening: 1
   m_Lives: 1
   m_Weapons: []
+  m_OnDeathEffectPrefab: {fileID: 136424, guid: 458b4725bc3a98149b0c310aa52b1989,
+    type: 2}
   m_InitialHealth: 25
   m_ConstantVelocity: {x: 60, y: 60, z: 0}
   m_AwardOnKill: 2000
+  m_MiniPrefab: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
