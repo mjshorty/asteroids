@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace entity
 {
@@ -10,6 +10,9 @@ namespace entity
 
         [SerializeField]
         private int m_Lives = 1;
+
+        [SerializeField]
+        public List<Weapon> m_Weapons = new List<Weapon>();
 
         protected int Lives
         {
@@ -152,6 +155,14 @@ namespace entity
             UpdateEntity();
             UpdatePosition();
             UpdateScreenWrap();
+        }
+
+        protected void FireWeapons()
+        {
+            foreach (var weapon in m_Weapons)
+            {
+                weapon.Fire();
+            }
         }
     }
 }

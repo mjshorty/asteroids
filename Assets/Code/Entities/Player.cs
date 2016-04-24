@@ -8,9 +8,6 @@ namespace entity
         [SerializeField]
         private float m_RotationSpeed = 10.0f;
 
-        [SerializeField]
-        private List<Weapon> m_Weapons = new List<Weapon>();
-
         private static int m_Score = 0;
 
         public static int Score { get { return m_Score; } set { m_Score = value; } }
@@ -54,14 +51,6 @@ namespace entity
             if(Input.GetKey(KeyCode.F))
             {
                 FireWeapons();
-            }
-        }
-
-        private void FireWeapons()
-        {
-            foreach(var weapon in m_Weapons)
-            {
-                weapon.Fire();
             }
         }
     }
