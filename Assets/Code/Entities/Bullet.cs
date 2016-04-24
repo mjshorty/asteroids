@@ -17,19 +17,32 @@ namespace entity
         void OnTriggerEnter(Collider collision)
         {
             GameObject collider = collision.gameObject;
-            if(collider.tag == "Enemy")
+            if (tag == "PlayerBullet")
             {
-                GameObject.Destroy(gameObject);
+                if (collider.tag == "Enemy")
+                {
+                    GameObject.Destroy(gameObject);
 
-                Enemy enemy = collider.GetComponent<Enemy>();
-                enemy.ApplyDamage(m_Damage);
+                    Enemy enemy = collider.GetComponent<Enemy>();
+                    enemy.ApplyDamage(m_Damage);
+                }
+                else if (collider.tag == "Asteroid")
+                {
+                    GameObject.Destroy(gameObject);
+
+                    Asteroid asteroid = collider.GetComponent<Asteroid>();
+                    asteroid.ApplyDamage(m_Damage);
+                }
             }
-            else if(collider.tag == "Asteroid")
+            else if (tag == "EnemyBullet")
             {
-                GameObject.Destroy(gameObject);
+                if (collider.tag == "Player")
+                {
+                    GameObject.Destroy(gameObject);
 
-                Asteroid asteroid = collider.GetComponent<Asteroid>();
-                asteroid.ApplyDamage(m_Damage);
+                    Player player = collider.GetComponent<Player>();
+                    player.ApplyDamage(m_Damage);
+                }
             }
         }
 
