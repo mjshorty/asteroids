@@ -11,6 +11,10 @@ namespace entity
         [SerializeField]
         private List<Weapon> m_Weapons = new List<Weapon>();
 
+        private static int m_Score = 0;
+
+        public static int Score { get { return m_Score; } set { m_Score = value; } }
+
         void OnTriggerEnter(Collider collision)
         {
             GameObject collider = collision.gameObject;
