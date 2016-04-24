@@ -134,10 +134,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Dampening: 0.97
   m_Lives: 3
-  m_InitialHealth: 100
-  m_RotationSpeed: 60
   m_Weapons:
   - {fileID: 11492720}
+  m_InitialHealth: 100
+  m_RotationSpeed: 80
 --- !u!114 &11492720
 MonoBehaviour:
   m_ObjectHideFlags: 1

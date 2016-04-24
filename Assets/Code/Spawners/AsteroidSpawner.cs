@@ -41,7 +41,7 @@ namespace spawn
         override protected int GetSpawnCount()
         {
             int numToSpawn = m_NumberToSpawn;
-            numToSpawn += entity.Player.Score % m_IncreaseSpawnCountByScore;
+            numToSpawn += entity.Player.Score / m_IncreaseSpawnCountByScore;
             numToSpawn = Mathf.Min(numToSpawn, m_MaxSpawnCount);
 
             return numToSpawn;
@@ -59,6 +59,7 @@ namespace spawn
 
                 entity.Asteroid asteroid = spawn.GetComponent<entity.Asteroid>();
                 asteroid.ConstantVelocity = asteroid.ConstantVelocity * GetVelocityScalar();
+                asteroid.Spawner = null; // set the spawner to null so we dont spawn more asteroids on death
             }
         }
 
@@ -66,6 +67,7 @@ namespace spawn
         {
             entity.Asteroid asteroid = spawn.GetComponent<entity.Asteroid>();
             asteroid.ConstantVelocity = asteroid.ConstantVelocity * GetVelocityScalar();
+            asteroid.Spawner = this;
         }
 
         private float GetVelocityScalar()

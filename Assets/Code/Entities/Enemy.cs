@@ -40,14 +40,10 @@ namespace entity
             direction.x += Mathf.Sin(rotation);
             direction.y += -Mathf.Cos(rotation);
 
-            // find the player direction
-            float playerRotation = target.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
-            Vector3 playerDirection = Vector3.zero;
+            // find the direction to the player
+            Vector3 dirToPlayer = Vector3.Normalize(target.transform.position - transform.position);
 
-            playerDirection.x += Mathf.Sin(playerRotation);
-            playerDirection.y += -Mathf.Cos(playerRotation);
-
-            float meDotTarget = Vector3.Dot(direction, playerDirection);
+            float meDotTarget = Vector3.Dot(direction, dirToPlayer);
             if(meDotTarget > 0.5f)
             {
                 FireWeapons();

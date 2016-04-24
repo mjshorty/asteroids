@@ -85,6 +85,51 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &412781137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 412781138}
+  - 114: {fileID: 412781139}
+  m_Layer: 0
+  m_Name: SpaceshipSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &412781138
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 412781137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1457743412}
+  m_RootOrder: 1
+--- !u!114 &412781139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 412781137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfbb5af513f9da4aa5233481c6b8d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Prefabs:
+  - {fileID: 154664, guid: 01f4838bb61d72449aed560eaebb11ec, type: 2}
+  - {fileID: 140928, guid: ae36cebdec686494187f8cefd5e457ac, type: 2}
+  SpawnRange: {x: 500, y: 500}
+  m_NumberToSpawn: 1
+  m_SpawnWhenScoreIsMultipleOf: 10000
 --- !u!4 &751581421 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495182, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
@@ -128,13 +173,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b289d9b001833a5449b0a3e37443a46b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Prefab: {fileID: 144136, guid: 7cec91f66c4214e44a28e41b5e0605fe, type: 2}
+  m_Prefabs:
+  - {fileID: 144136, guid: 7cec91f66c4214e44a28e41b5e0605fe, type: 2}
   SpawnRange: {x: 500, y: 500}
   m_NumberToSpawn: 3
   m_SpawnWaitTime: 1
   m_MaxSpawnCount: 10
-  m_IncreaseSpawnCountByScore: 10000
-  m_MiniPrefab: {fileID: 0}
+  m_IncreaseSpawnCountByScore: 27000
+  m_MiniPrefab: {fileID: 139972, guid: a74dc3db24a708140868344eb6ef7c49, type: 2}
   m_MinimumVelocityScalar: 0.65
   m_MaximumVelocityScalar: 1
 --- !u!1 &1063233871
@@ -230,7 +276,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495182, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
@@ -361,6 +407,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 838641083}
+  - {fileID: 412781138}
   - {fileID: 751581421}
   m_Father: {fileID: 0}
   m_RootOrder: 2

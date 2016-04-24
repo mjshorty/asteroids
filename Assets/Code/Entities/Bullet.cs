@@ -26,6 +26,8 @@ namespace entity
             }
             else if(collider.tag == "Asteroid")
             {
+                GameObject.Destroy(gameObject);
+
                 Asteroid asteroid = collider.GetComponent<Asteroid>();
                 asteroid.ApplyDamage(m_Damage);
             }

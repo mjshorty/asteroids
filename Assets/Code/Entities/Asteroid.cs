@@ -11,6 +11,8 @@ namespace entity
         [SerializeField]
         private int m_AwardOnKill = 1000;
 
+        public spawn.AsteroidSpawner Spawner { get; set; }
+
         public Vector3 ConstantVelocity { get { return m_ConstantVelocity; } set { m_ConstantVelocity = value; } }
 
         override protected void UpdateEntity()
@@ -22,6 +24,11 @@ namespace entity
         {
             base.OnDeath();
             Player.Score += m_AwardOnKill;
+
+            if (Spawner)
+            {
+                Spawner.SpawnMiniAsteroid(transform.position, 4);
+            }
         }
     }
 }

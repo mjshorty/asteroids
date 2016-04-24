@@ -39,11 +39,13 @@ namespace entity
 
                 m_Acceleration += acceleration * 10.0f;
             }
-            else if(Input.GetKey(KeyCode.RightArrow))
+
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 transform.Rotate(0.0f, 0.0f, -Time.deltaTime * m_RotationSpeed);
             }
-            else if (Input.GetKey(KeyCode.LeftArrow))
+
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.Rotate(0.0f, 0.0f, Time.deltaTime * m_RotationSpeed);
             }

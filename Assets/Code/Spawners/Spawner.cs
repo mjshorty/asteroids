@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace spawn
 {
     public class Spawner : MonoBehaviour
     {
         [SerializeField]
-        private GameObject m_Prefab = null;
+        private List<GameObject> m_Prefabs = new List<GameObject>();
 
         [SerializeField]
         private Vector2 SpawnRange = new Vector2(500.0f, 500.0f);
@@ -28,24 +28,27 @@ namespace spawn
                 return;
             }
 
-            Spawn(GetSpawnCount(), m_Prefab);
+            Spawn(GetSpawnCount(), m_Prefabs);
         }
 
-        protected void Spawn(int count, GameObject prefab)
+        protected void Spawn(int count, List<GameObject> prefabs)
         {
             for (int i = 0; i < count; ++i)
             {
-                Camera cam = Camera.main;
-                Vector3 position = Vector3.zero;
+                foreach (GameObject prefab in prefabs)
+                {
+                    Camera cam = Camera.main;
+                    Vector3 position = Vector3.zero;
 
-                position.x = Random.Range(-SpawnRange.x, SpawnRange.x);
-                position.y = Random.Range(-SpawnRange.y, SpawnRange.y);
+                    position.x = Random.Range(-SpawnRange.x, SpawnRange.x);
+                    position.y = Random.Range(-SpawnRange.y, SpawnRange.y);
 
-                Quaternion rotation = Quaternion.identity;
-                GameObject spawn = GameObject.Instantiate(m_Prefab, position, rotation) as GameObject;
-                spawn.transform.parent = transform;
+                    Quaternion rotation = Quaternion.identity;
+                    GameObject spawn = GameObject.Instantiate(prefab, position, rotation) as GameObject;
+                    spawn.transform.parent = transform;
 
-                OnSpawn(spawn);
+                    OnSpawn(spawn);
+                }
             }
         }
 
