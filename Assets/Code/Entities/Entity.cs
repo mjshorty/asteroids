@@ -9,7 +9,25 @@ namespace entity
         private float m_Dampening = 0.95f;
 
         [SerializeField]
-        protected int m_Lives = 1;
+        private int m_Lives = 1;
+
+        protected int Lives
+        {
+            get { return m_Lives; }
+            set
+            {
+                m_Lives = value;
+                if (m_Lives == 0)
+                {
+                    OnDeath();
+                    GameObject.Destroy(gameObject);
+                }
+                else
+                {
+                    ResetEntity();
+                }
+            }
+        }
 
         [SerializeField]
         protected int m_InitialHealth = 100;
@@ -34,17 +52,11 @@ namespace entity
             m_Health -= damage;
             if (m_Health <= 0)
             {
-                --m_Lives;
-                if (m_Lives > 0)
-                {
-                    ResetEntity();
-                }
-                else
-                {
-                    GameObject.Destroy(gameObject);
-                }
+                Lives = Lives - 1;
             }
         }
+
+        virtual protected void OnDeath() { }
 
         virtual protected void UpdateEntity() {}
 

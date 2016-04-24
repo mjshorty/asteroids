@@ -9,15 +9,7 @@ namespace entity
         {
             if(collision.tag == "Player")
             {
-                --m_Lives;
-                if (m_Lives == 0)
-                {
-                    GameObject.Destroy(gameObject);
-                }
-                else
-                {
-                    ResetEntity();
-                }
+                Lives = Lives - 1; ;
             }
         }
     }

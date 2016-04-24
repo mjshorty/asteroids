@@ -16,15 +16,7 @@ namespace entity
             GameObject collider = collision.gameObject;
             if(collider.tag == "Asteroid" || collider.tag == "Enemy")
             {
-                --m_Lives;
-                if (m_Lives == 0)
-                {
-                    // game over
-                }
-                else
-                {
-                    ResetEntity();
-                }
+                Lives = Lives - 1;
             }
         }
 
