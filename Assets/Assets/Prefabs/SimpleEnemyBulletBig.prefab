@@ -14,7 +14,7 @@ GameObject:
   - 54: {fileID: 5466720}
   - 65: {fileID: 6550922}
   m_Layer: 11
-  m_Name: SimpleEnemyBullet
+  m_Name: SimpleEnemyBulletBig
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a246d486d3afa704fbd04e4ea73ad412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Damage: 25
-  m_Velocity: 300
+  m_Damage: 50
+  m_Velocity: 150
   m_Dampening: 1
 --- !u!1001 &100100000
 Prefab:

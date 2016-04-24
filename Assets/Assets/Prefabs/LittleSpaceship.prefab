@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496b4d3926c9dc644a860cf757933559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletPrefab: {fileID: 115532, guid: 57ed79a5ee075a549a57a1765124d40f, type: 2}
-  m_FireRate: 0.5
+  m_BulletPrefab: {fileID: 115532, guid: 96feab0e5143ebc439435f94138dd700, type: 2}
+  m_FireRate: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

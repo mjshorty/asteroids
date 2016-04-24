@@ -203,7 +203,7 @@ MonoBehaviour:
   m_RandomPrefab: 0
   SpawnRange: {x: 500, y: 500}
   m_NumberToSpawn: 1
-  m_SpawnWhenScoreIsMultipleOf: 1000
+  m_SpawnWhenScoreIsMultipleOf: 10000
 --- !u!1001 &465121260
 Prefab:
   m_ObjectHideFlags: 0
