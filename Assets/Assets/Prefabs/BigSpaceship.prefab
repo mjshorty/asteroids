@@ -141,8 +141,9 @@ MonoBehaviour:
   m_GridForce: 1
   m_GridForceRadius: 50
   m_GridForceMagnitude: 100
-  m_InitialHealth: 200
-  m_RotationAcceleration: 10
+  m_InitialHealth: 300
+  m_PositionalAcceleration: 7.5
+  m_RotationAcceleration: 0.025
   m_Accuracy: 0.25
 --- !u!114 &11474224
 MonoBehaviour:

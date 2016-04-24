@@ -9,7 +9,7 @@ namespace entity
         private float m_PositionalAcceleration = 10.0f;
 
         [SerializeField]
-        private float m_RotationAcceleration = 10.0f;
+        private float m_RotationAcceleration = 0.4f;
 
         [SerializeField]
         private float m_Accuracy = 0.25f;
@@ -51,15 +51,21 @@ namespace entity
 
             // find out where we are in relation to the player
             Vector3 dirToPlayer = target.transform.position - transform.position;
+            Vector3 dirToPlayerNormalized = dirToPlayer.normalized;
 
-            // move towards the player
-            m_Acceleration.x += dirToPlayer.normalized.x * m_PositionalAcceleration;
-            m_Acceleration.y += dirToPlayer.normalized.y * m_PositionalAcceleration;
+            // turn to face the player
+            float zRot = Mathf.Atan2(dirToPlayerNormalized.y, dirToPlayerNormalized.x) * Mathf.Rad2Deg;
+            Quaternion targetRot = Quaternion.Euler(0.0f, 0.0f, zRot - 90.0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, m_RotationAcceleration);
 
             // if we are in view of the player fire
-            float meDotTarget = Vector3.Dot(direction, dirToPlayer.normalized);
+            float meDotTarget = Vector3.Dot(direction, dirToPlayerNormalized);
             if(meDotTarget > m_Accuracy)
             {
+                // move towards the player
+                m_Acceleration.x += dirToPlayerNormalized.x * m_PositionalAcceleration;
+                m_Acceleration.y += dirToPlayerNormalized.y * m_PositionalAcceleration;
+
                 FireWeapons();
             }
         }
