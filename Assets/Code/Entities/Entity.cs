@@ -14,7 +14,7 @@ namespace entity
         [SerializeField]
         public List<Weapon> m_Weapons = new List<Weapon>();
 
-        protected int Lives
+        public int Lives
         {
             get { return m_Lives; }
             set
