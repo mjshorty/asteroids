@@ -16,7 +16,7 @@ public class DestroyOnEffectEnd : MonoBehaviour
     {
         if(!m_Effect.IsAlive())
         {
-            GameObject.Destroy(gameObject);
+            utils.Pool.Instance.Destroy(gameObject);
         }
 	}
 }

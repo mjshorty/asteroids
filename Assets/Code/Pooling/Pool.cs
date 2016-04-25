@@ -42,13 +42,13 @@ namespace utils
         {
             Debug.Assert(prefab != null);
 
-            int id = prefab.GetInstanceID();
-            var pool = m_Pool[id];
-
+            List<PoolEntry> pool = null;
             PoolEntry poolEntry = null;
 
-            if(pool != null)
+            int id = prefab.GetInstanceID();
+            if(m_Pool.ContainsKey(id))
             {
+                pool = m_Pool[id];
                 foreach (var entry in pool)
                 {
                     if (!entry.m_InUse)
@@ -63,12 +63,16 @@ namespace utils
                 pool = new List<PoolEntry>();
                 m_Pool.Add(prefab.GetInstanceID(), pool);
             }
-            
-            poolEntry = CreatePoolEntry(prefab);
-            pool.Add(poolEntry);
+
+            if (poolEntry == null)
+            {
+                poolEntry = CreatePoolEntry(prefab);
+                pool.Add(poolEntry);
+            }
 
             poolEntry.m_InUse = true;
 
+            poolEntry.m_GO.SetActive(true);
             SendMessage(poolEntry.m_GO, "Awake", true);
             SendMessage(poolEntry.m_GO, "Start", true);
 

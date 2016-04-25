@@ -21,14 +21,14 @@ namespace entity
             {
                 if (collider.tag == "Enemy")
                 {
-                    GameObject.Destroy(gameObject);
+                    utils.Pool.Instance.Destroy(gameObject);
 
                     Enemy enemy = collider.GetComponent<Enemy>();
                     enemy.ApplyDamage(m_Damage);
                 }
                 else if (collider.tag == "Asteroid")
                 {
-                    GameObject.Destroy(gameObject);
+                    utils.Pool.Instance.Destroy(gameObject);
 
                     Asteroid asteroid = collider.GetComponent<Asteroid>();
                     asteroid.ApplyDamage(m_Damage);
@@ -38,7 +38,7 @@ namespace entity
             {
                 if (collider.tag == "Player")
                 {
-                    GameObject.Destroy(gameObject);
+                    utils.Pool.Instance.Destroy(gameObject);
 
                     Player player = collider.GetComponent<Player>();
                     player.ApplyDamage(m_Damage);
@@ -72,7 +72,7 @@ namespace entity
             Renderer renderer = GetComponent<Renderer>();
             if(!renderer.isVisible)
             {
-                GameObject.Destroy(gameObject);
+                utils.Pool.Instance.Destroy(gameObject);
             }
         }
     }

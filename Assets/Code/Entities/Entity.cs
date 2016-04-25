@@ -52,7 +52,7 @@ namespace entity
                 {
                     if (m_OnDeathEffectPrefab)
                     {
-                        GameObject effectGO = GameObject.Instantiate(m_OnDeathEffectPrefab) as GameObject;
+                        GameObject effectGO = utils.Pool.Instance.Create(m_OnDeathEffectPrefab);
                         effectGO.transform.position = transform.position;
                     }
 
@@ -81,7 +81,7 @@ namespace entity
                     if (m_Lives == 0)
                     {
                         OnDeath();
-                        GameObject.Destroy(gameObject);
+                        utils.Pool.Instance.Destroy(gameObject);
                     }
                     else
                     {

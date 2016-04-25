@@ -6,7 +6,7 @@ namespace entity
     public class Weapon : MonoBehaviour
     {
         [SerializeField]
-        private GameObject m_BulletPrefab;
+        private GameObject m_BulletPrefab = null;
 
         [SerializeField]
         private float m_FireRate = 1.0f;
@@ -29,7 +29,7 @@ namespace entity
             {
                 m_ElapsedTime = 0.0f;
 
-                GameObject bullet = GameObject.Instantiate(m_BulletPrefab) as GameObject;
+                GameObject bullet = utils.Pool.Instance.Create(m_BulletPrefab);
                 bullet.transform.position = transform.position;
                 bullet.transform.rotation = transform.rotation;
             }

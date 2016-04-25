@@ -368,6 +368,64 @@ MonoBehaviour:
   m_IncreaseSpawnCountByScore: 27000
   m_MinimumVelocityScalar: 0.65
   m_MaximumVelocityScalar: 1
+--- !u!1 &940531595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 940531597}
+  - 114: {fileID: 940531596}
+  m_Layer: 0
+  m_Name: Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &940531596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 940531595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271e8126fa7aad14bae0f3452e397d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Prefabs:
+  - m_Prefab: {fileID: 144136, guid: 7cec91f66c4214e44a28e41b5e0605fe, type: 2}
+    m_PoolSize: 10
+  - m_Prefab: {fileID: 144136, guid: 18f3dcde2796b8345bc09132222d7e83, type: 2}
+    m_PoolSize: 10
+  - m_Prefab: {fileID: 154664, guid: 01f4838bb61d72449aed560eaebb11ec, type: 2}
+    m_PoolSize: 1
+  - m_Prefab: {fileID: 140928, guid: ae36cebdec686494187f8cefd5e457ac, type: 2}
+    m_PoolSize: 1
+  - m_Prefab: {fileID: 139972, guid: a74dc3db24a708140868344eb6ef7c49, type: 2}
+    m_PoolSize: 20
+  - m_Prefab: {fileID: 139972, guid: 020df2664cd0b6447b86412ab9a588a5, type: 2}
+    m_PoolSize: 20
+  - m_Prefab: {fileID: 134890, guid: 2c6d1aac7de9b944896a2812668ed0e5, type: 2}
+    m_PoolSize: 10
+  - m_Prefab: {fileID: 115532, guid: 57ed79a5ee075a549a57a1765124d40f, type: 2}
+    m_PoolSize: 10
+  - m_Prefab: {fileID: 115532, guid: 96feab0e5143ebc439435f94138dd700, type: 2}
+    m_PoolSize: 20
+--- !u!4 &940531597
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 940531595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &985975026
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0981e0b40cd7548ab56ddd1289e956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LineWidth: 1
+  m_LineWidth: 2
   m_LineColour: {r: 0.60257953, g: 0.3953828, b: 0.75735295, a: 1}
   m_Material: {fileID: 2100000, guid: 483e0f08f8f722e429fa0f2cff067625, type: 2}
 --- !u!1 &1296509617
