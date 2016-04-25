@@ -21,6 +21,11 @@ namespace entity
             }
         }
 
+        override protected void OnDeath()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        }
+
         // Update is called once per frame
         override protected void UpdateEntity()
         {

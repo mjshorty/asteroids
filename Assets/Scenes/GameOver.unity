@@ -385,7 +385,7 @@ GameObject:
   - 114: {fileID: 555895680}
   - 114: {fileID: 555895679}
   m_Layer: 5
-  m_Name: New Game
+  m_Name: Retry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -505,7 +505,7 @@ GameObject:
   - 222: {fileID: 701468185}
   - 114: {fileID: 701468184}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,9 +560,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'ASTEROIDS
-
-'
+  m_Text: GAME OVER
 --- !u!222 &701468185
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -635,7 +633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Game
+  m_Text: Retry
 --- !u!222 &823475410
 CanvasRenderer:
   m_ObjectHideFlags: 0
