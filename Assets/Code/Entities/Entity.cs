@@ -78,7 +78,7 @@ namespace entity
                         }
                     }
 
-                    if (m_Lives == 0)
+                    if (m_Lives <= 0)
                     {
                         OnDeath();
                         utils.Pool.Instance.Destroy(gameObject);

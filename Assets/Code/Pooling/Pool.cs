@@ -100,7 +100,7 @@ namespace utils
                 {
                     foreach(var entry in pool)
                     {
-                        if(entry.m_GO == go)
+                        if(entry.m_GO.GetInstanceID() == go.GetInstanceID())
                         {
                             entry.m_InUse = false;
 

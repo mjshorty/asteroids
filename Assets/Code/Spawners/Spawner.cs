@@ -17,6 +17,17 @@ namespace spawn
         [SerializeField]
         protected int m_NumberToSpawn = 3;
 
+        void OnDestroy()
+        {
+            while(transform.childCount > 0)
+            {
+                int i = transform.childCount - 1;
+                GameObject go = transform.GetChild(i).gameObject;
+
+                utils.Pool.Instance.Destroy(go);
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {

@@ -414,6 +414,18 @@ MonoBehaviour:
     m_PoolSize: 10
   - m_Prefab: {fileID: 115532, guid: 96feab0e5143ebc439435f94138dd700, type: 2}
     m_PoolSize: 20
+  - m_Prefab: {fileID: 136424, guid: 6ae7fda53adb8fb4b88ab7c52e72f118, type: 2}
+    m_PoolSize: 5
+  - m_Prefab: {fileID: 136424, guid: f49e52748d41448419a6db7761367b89, type: 2}
+    m_PoolSize: 5
+  - m_Prefab: {fileID: 136424, guid: 7de2bb5078257bd4ab03a0fc7e8bcedf, type: 2}
+    m_PoolSize: 5
+  - m_Prefab: {fileID: 136424, guid: 458b4725bc3a98149b0c310aa52b1989, type: 2}
+    m_PoolSize: 5
+  - m_Prefab: {fileID: 136424, guid: b6958fc5b2efd3b468472e63729a6b03, type: 2}
+    m_PoolSize: 5
+  - m_Prefab: {fileID: 136424, guid: bb72384d342d8bb41bbe0a3fe3ae15cf, type: 2}
+    m_PoolSize: 5
 --- !u!4 &940531597
 Transform:
   m_ObjectHideFlags: 0
