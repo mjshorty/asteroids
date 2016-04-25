@@ -55,7 +55,7 @@ namespace entity
                 transform.Rotate(0.0f, 0.0f, Time.deltaTime * m_RotationSpeed);
             }
 
-            if(Input.GetKey(KeyCode.F))
+            if(Input.GetKey(KeyCode.Space))
             {
                 FireWeapons();
             }
