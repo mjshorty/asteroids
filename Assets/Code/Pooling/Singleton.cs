@@ -7,7 +7,7 @@ namespace utils
     {
         static public T Instance { get; private set; }
 
-        static public bool IsValid { get { return Instance != null} }
+        static public bool IsValid { get { return (Instance != null); } }
 
         protected virtual void Awake()
         {
