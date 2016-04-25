@@ -16,6 +16,8 @@ namespace grid
         }
 
         private List<Spring> m_Springs = null;
+        private List<Spring> m_AnchorSprings = null;
+
         private List<Mass> m_DynamicPoints = null;
         private List<Mass> m_AnchorPoints = null;
 
@@ -35,26 +37,14 @@ namespace grid
         {
             Resolution res = Screen.currentResolution;
 
-            int numColumns = (int)((float)res.height / m_Spacing) + 1;
-            int numRows = (int)((float)res.width / m_Spacing) + 1;
+            int numRows = (int)((float)res.height / m_Spacing) + 1;
+            int numColumns = (int)((float)res.width / m_Spacing) + 1;
 
-            CreatePointsOfMass(numColumns, numRows);
-            CreateSprings(numColumns, numRows);
-        }
-
-        /// <summary>
-        /// Create and initialise all of the points of mass
-        /// within our grid. The anchor points are immovable and will
-        /// be used to anchor our dynamic points to their original position
-        /// otherwise we'd end up with a (very) simple cloth sim that would
-        /// never return to the original state.
-        /// </summary>
-        /// <param name="numColumns">The number of columns in the grid</param>
-        /// <param name="numRows">The number of rows in the grid</param>
-        private void CreatePointsOfMass(int numColumns, int numRows)
-        {
             m_DynamicPoints = new List<Mass>();
             m_AnchorPoints = new List<Mass>();
+
+            m_Springs = new List<Spring>();
+            m_AnchorSprings = new List<Spring>();
 
             Vector3 offset = Vector3.zero;
             offset.x = (numColumns * m_Spacing) * 0.5f;
@@ -66,52 +56,38 @@ namespace grid
                 {
                     Vector3 position = new Vector3(x * m_Spacing, y * m_Spacing, 0.0f);
 
-                    m_DynamicPoints.Add(new Mass(position - offset, 1.0f / m_Mass));
+                    Mass dynamicPoint = new Mass(position - offset, 1.0f / m_Mass);
+                    m_DynamicPoints.Add(dynamicPoint);
 
-                    // its a bit wastefull creating all these anchor points when we only need the outside ones
-                    // and then every 3x3, maybe we can be a bit smarter about this.
-                    m_AnchorPoints.Add(new Mass(position - offset, 0.0f));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Create the springs between our points of mass
-        /// </summary>
-        /// <param name="numColumns">The number of columns in the grid</param>
-        /// <param name="numRows">The number of rows in the grid</param>
-        private void CreateSprings(int numColumns, int numRows)
-        {
-            m_Springs = new List<Spring>();
-
-            for (int y = 0; y < numRows; ++y)
-            {
-                for (int x = 0; x < numColumns; ++x)
-                {
                     // anchor all of the outside points of mass
                     if (x == 0 || y == 0 || x == numColumns - 1 || y == numRows - 1)
                     {
-                        Spring spring = new Spring(GetPointOfMass(false, x, y, numColumns), GetPointOfMass(true, x, y, numColumns), 0.1f, 0.1f);
-                        m_Springs.Add(spring);
+                        Mass anchorPoint = new Mass(position - offset, 0.0f);
+                        m_AnchorPoints.Add(anchorPoint);
+
+                        Spring spring = new Spring(anchorPoint, dynamicPoint, 0.1f, 0.1f);
+                        m_AnchorSprings.Add(spring);
                     }
                     // anchor every 3rd dynamic point
                     else if (x % 3 == 0 && y % 3 == 0)
                     {
-                        Spring spring = new Spring(GetPointOfMass(false, x, y, numColumns), GetPointOfMass(true, x, y, numColumns), 0.002f, 0.02f);
-                        m_Springs.Add(spring);
-                    }
+                        Mass anchorPoint = new Mass(position - offset, 0.0f);
+                        m_AnchorPoints.Add(anchorPoint);
 
+                        Spring spring = new Spring(anchorPoint, dynamicPoint, 0.002f, 0.02f);
+                        m_AnchorSprings.Add(spring);
+                    }
 
                     // add a spring between each point of mass and the previous
                     if (x > 0)
                     {
-                        Spring spring = new Spring(GetPointOfMass(true, x - 1, y, numColumns), GetPointOfMass(true, x, y, numColumns), 0.28f, 0.06f);
+                        Spring spring = new Spring(GetPointOfMass(x - 1, y, numColumns), dynamicPoint, 0.28f, 0.06f);
                         m_Springs.Add(spring);
                     }
 
                     if (y > 0)
                     {
-                        Spring spring = new Spring(GetPointOfMass(false, x, y - 1, numColumns), GetPointOfMass(true, x, y, numColumns), 0.28f, 0.06f);
+                        Spring spring = new Spring(GetPointOfMass(x, y - 1, numColumns), dynamicPoint, 0.28f, 0.06f);
                         m_Springs.Add(spring);
                     }
                 }
@@ -126,10 +102,10 @@ namespace grid
         /// <param name="y">The y coordinate</param>
         /// <param name="numColumns">The number of columns in the grid</param>
         /// <returns></returns>
-        private Mass GetPointOfMass(bool dynamic, int x, int y, int numColumns)
+        private Mass GetPointOfMass(int x, int y, int numColumns)
         {
             int index = y * numColumns + x;
-            return dynamic ? m_DynamicPoints[index] : m_AnchorPoints[index];
+            return m_DynamicPoints[index];
         }
 
         // Update is called once per frame
@@ -139,6 +115,13 @@ namespace grid
             for(int i = 0; i < numSprings; ++i)
             {
                 Spring spring = m_Springs[i] as Spring;
+                spring.Update();
+            }
+
+            numSprings = m_AnchorSprings.Count;
+            for (int i = 0; i < numSprings; ++i)
+            {
+                Spring spring = m_AnchorSprings[i] as Spring;
                 spring.Update();
             }
 
