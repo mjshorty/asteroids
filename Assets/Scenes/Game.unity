@@ -260,7 +260,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Score
@@ -608,6 +608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7d476cba1359f408e35b77a6669fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Width: 1025
+  m_Height: 775
   m_Spacing: 25
   m_Mass: 1
 --- !u!4 &1063233873
@@ -817,7 +819,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: High Score

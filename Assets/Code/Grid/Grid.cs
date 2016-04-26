@@ -15,6 +15,12 @@ namespace grid
             Directed
         }
 
+        [SerializeField]
+        private int m_Width = 400;
+
+        [SerializeField]
+        private int m_Height = 300;
+
         private List<Spring> m_Springs = null;
         private List<Spring> m_AnchorSprings = null;
 
@@ -37,8 +43,8 @@ namespace grid
         {
             Resolution res = Screen.currentResolution;
 
-            int numRows = (int)((float)res.height / m_Spacing) + 1;
-            int numColumns = (int)((float)res.width / m_Spacing) + 1;
+            int numRows = (int)((float)m_Height / m_Spacing) + 1;
+            int numColumns = (int)((float)m_Width / m_Spacing) + 1;
 
             m_DynamicPoints = new List<Mass>();
             m_AnchorPoints = new List<Mass>();
