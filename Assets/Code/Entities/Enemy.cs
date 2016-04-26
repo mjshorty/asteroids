@@ -5,19 +5,36 @@ namespace entity
 {
     public class Enemy : Entity
     {
+        /// <summary>
+        /// The positional acceleration of the enemy
+        /// </summary>
         [SerializeField]
         private float m_PositionalAcceleration = 10.0f;
 
+        /// <summary>
+        /// How fast the enemy can rotate
+        /// </summary>
         [SerializeField]
         private float m_RotationAcceleration = 0.4f;
 
+        /// <summary>
+        /// How accurate the enemy is at firing
+        /// </summary>
         [SerializeField]
         private float m_Accuracy = 0.25f;
 
+        /// <summary>
+        /// A list of targets (players) to fire at
+        /// </summary>
         protected List<Player> m_Targets = new List<Player>();
 
+        /// <summary>
+        /// Initialise the list of targets
+        /// </summary>
         void Start()
         {
+            // this function call is slow but we currently dont have any other way of passing through the player
+            // maybe the spawner could pass the player to us
             GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
             foreach (var go in targets)
             {
@@ -29,6 +46,9 @@ namespace entity
             }
         }
 
+        /// <summary>
+        /// Update the enemy, tracking down and firing upon its target
+        /// </summary>
         protected override void UpdateEntity()
         {
             base.UpdateEntity();
@@ -38,9 +58,6 @@ namespace entity
             {
                 return;
             }
-
-            // find the direction to the player
-            //Quaternion.Lerp(transform.rotation, targetRotation, m_Acceleration * Time.deltaTime);
 
             // find our direction
             float rotation = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
@@ -70,6 +87,10 @@ namespace entity
             }
         }
 
+        /// <summary>
+        /// Find the closest target player
+        /// </summary>
+        /// <returns>The closest target player</returns>
         protected Player GetClosestPlayer()
         {
             if(m_Targets.Count == 0)
@@ -93,6 +114,10 @@ namespace entity
             return player;
         }
 
+        /// <summary>
+        /// Handle collision with the player
+        /// </summary>
+        /// <param name="collision">The collision data</param>
         void OnTriggerEnter(Collider collision)
         {
             if(collision.tag == "Player")

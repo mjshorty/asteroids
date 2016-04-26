@@ -123,6 +123,11 @@ namespace entity
                 }
             }
         }
+
+        /// <summary>
+        /// Destroy the entity after 3 seconds
+        /// hiding it in the meantime
+        /// </summary>
         IEnumerator DelayedDestroy()
         {
             Renderer renderer = GetComponent<Renderer>();
@@ -140,6 +145,9 @@ namespace entity
             utils.Pool.Instance.Destroy(gameObject);
         }
 
+        /// <summary>
+        /// Fixup the entity
+        /// </summary>
         void Start()
         {
             m_InitialPosition = transform.position;
@@ -149,6 +157,10 @@ namespace entity
             ResetEntity();
         }
 
+        /// <summary>
+        /// Apply damage to the entity, deducted from health
+        /// </summary>
+        /// <param name="damage">Th amount of damage to apply</param>
         public void ApplyDamage(int damage)
         {
             m_Health -= damage;
@@ -158,17 +170,34 @@ namespace entity
             }
         }
 
+        /// <summary>
+        /// Kill the entity due to the end of the game being reached
+        /// </summary>
         public void GameOverDeath()
         {
             OnDeath(true);
         }
 
+        /// <summary>
+        /// Called when the entity is about to be deleted
+        /// </summary>
+        /// <param name="gameOver">Was this due to a game over?</param>
+        /// <returns>Trigger a delayed death?</returns>
         virtual protected bool OnDeath(bool gameOver) { return false; }
 
+        /// <summary>
+        /// Update the entity
+        /// </summary>
         virtual protected void UpdateEntity() {}
 
+        /// <summary>
+        /// Reset the entity to its original state
+        /// </summary>
         virtual protected void OnResetEntity() {}
 
+        /// <summary>
+        /// Reset the entities transform
+        /// </summary>
         protected void ResetEntity()
         {
             m_Acceleration = Vector3.zero;
@@ -181,6 +210,9 @@ namespace entity
             OnResetEntity();
         }
 
+        /// <summary>
+        /// Update the position of the entity by integrating the accelration and velocity
+        /// </summary>
         private void UpdatePosition()
         {
             m_Velocity += m_Acceleration * Time.deltaTime;
@@ -201,6 +233,9 @@ namespace entity
             }
         }
 
+        /// <summary>
+        /// If the entity goes off screen wrap it around to the other side
+        /// </summary>
         private void UpdateScreenWrap()
         {
             Renderer renderer = GetComponent<Renderer>();
@@ -254,6 +289,9 @@ namespace entity
             transform.position = cam.ScreenToWorldPoint(screenPos);
         }
 
+        /// <summary>
+        /// Update the entity
+        /// </summary>
         void Update()
         {
             UpdateEntity();
@@ -261,6 +299,9 @@ namespace entity
             UpdateScreenWrap();
         }
 
+        /// <summary>
+        /// Fire any weapons attached to the entitys
+        /// </summary>
         protected void FireWeapons()
         {
             foreach (var weapon in m_Weapons)
