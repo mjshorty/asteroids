@@ -103,9 +103,7 @@ namespace spawn
             position.y = Random.Range(-SpawnRange.y, SpawnRange.y);
 
             Quaternion rotation = Quaternion.identity;
-            GameObject spawn = utils.Pool.Instance.Create(prefab);
-            spawn.transform.parent = transform;
-            spawn.transform.position = position;
+            GameObject spawn = utils.Pool.Instance.Create(prefab, position, transform);
             spawn.transform.rotation = rotation;
 
             OnSpawn(spawn);

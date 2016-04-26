@@ -26,9 +26,7 @@ namespace entity
                 {
                     if (player.Bomb == null)
                     {
-                        GameObject powerUp = utils.Pool.Instance.Create(m_PowerUpPrefab.gameObject) as GameObject;
-                        powerUp.transform.parent = player.transform;
-                        powerUp.transform.position = player.transform.position;
+                        GameObject powerUp = utils.Pool.Instance.Create(m_PowerUpPrefab.gameObject, player.transform.position, player.transform) as GameObject;
 
                         player.Bomb = powerUp.GetComponent<SpecialWeapon>();
 

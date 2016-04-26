@@ -38,7 +38,7 @@ namespace utils
             }
         }
 
-        public GameObject Create(GameObject prefab)
+        public GameObject Create(GameObject prefab, Vector3 position, Transform parent = null)
         {
             Debug.Assert(prefab != null);
 
@@ -71,6 +71,13 @@ namespace utils
             }
 
             poolEntry.m_InUse = true;
+
+            if (parent != null)
+            {
+                poolEntry.m_GO.transform.parent = parent;
+            }
+
+            poolEntry.m_GO.transform.position = position;
 
             poolEntry.m_GO.SetActive(true);
             SendMessage(poolEntry.m_GO, "Awake", true);

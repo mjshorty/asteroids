@@ -4,43 +4,68 @@ using System.Collections.Generic;
 
 namespace entity
 {
+    /// <summary>
+    /// The base entity class all ai objects
+    /// in the game will derive from this
+    /// (players, asteroids, spaceships etc)
+    /// </summary>
     public class Entity : MonoBehaviour
     {
+        // Velocity and acceleration dampening
         [SerializeField]
         private float m_Dampening = 0.95f;
 
+        // The inital number of lives granted to the entity
         [SerializeField]
         private int m_Lives = 1;
 
+        // Any optional weapons assigned to the entity
         [SerializeField]
         public List<Weapon> m_Weapons = new List<Weapon>();
 
+        // An optional effect that can be played on the death of the entity
         [SerializeField]
         private GameObject m_OnDeathEffectPrefab = null;
 
+        // The grid effect that will be applied once the player has dieds
         [SerializeField]
         private grid.Grid.Force m_GridForce = grid.Grid.Force.Explosion;
 
+        // The radius of the force applied to the grid
         [SerializeField]
         private float m_GridForceRadius = 10.0f;
 
+        // The magnitude of the force applied to the grid
         [SerializeField]
         private float m_GridForceMagnitude = 100.0f;
 
+        // The intial health of the entity
         [SerializeField]
         protected int m_InitialHealth = 100;
 
+        // The current number of lives assigned to the entity
         private int m_CurrentLives = 0;
 
+        // The current acceleration of the entity
         protected Vector3 m_Acceleration = Vector3.zero;
+
+        // The current velocity of the entity
         protected Vector3 m_Velocity = Vector3.zero;
+
+        // The current health of the entity
         protected int m_Health = 100;
 
+        // The cached initial position of the entity
         protected Vector3 m_InitialPosition = Vector3.zero;
+
+        // The intial rotation of the entity
         protected Quaternion m_InitialRotation = Quaternion.identity;
 
+        // Get the percentage of health left
         public float HealthPercentage { get { return (float)m_Health / (float)m_InitialHealth; } }
 
+        // Get or set the current nubmer of lives the entity has
+        // Setting this to 0 may kill the entity
         public int Lives
         {
             get { return m_CurrentLives; }
@@ -53,8 +78,7 @@ namespace entity
                 {
                     if (m_OnDeathEffectPrefab)
                     {
-                        GameObject effectGO = utils.Pool.Instance.Create(m_OnDeathEffectPrefab);
-                        effectGO.transform.position = transform.position;
+                        GameObject effectGO = utils.Pool.Instance.Create(m_OnDeathEffectPrefab, transform.position);
                     }
 
                     grid.Grid gameGrid = grid.Grid.Instance;

@@ -29,8 +29,7 @@ namespace entity
             {
                 m_ElapsedTime = 0.0f;
 
-                GameObject bullet = utils.Pool.Instance.Create(m_BulletPrefab);
-                bullet.transform.position = transform.position;
+                GameObject bullet = utils.Pool.Instance.Create(m_BulletPrefab, transform.position);
                 bullet.transform.rotation = transform.rotation;
             }
         }

@@ -15,6 +15,7 @@ namespace game
         void Start()
         {
             m_HighScore = PlayerPrefs.GetInt("High Score");
+            m_CurrentScore = 0;
         }
 
         public void Award(int points)
@@ -30,9 +31,6 @@ namespace game
             }
                 
             PlayerPrefs.SetInt("Last Score", m_CurrentScore);
-
-            m_CurrentScore = 0;
-            m_HighScore = PlayerPrefs.GetInt("High Score");
         }
     }
 }

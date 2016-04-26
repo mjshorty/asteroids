@@ -71,8 +71,7 @@ namespace entity
 
             if (m_EffectPrefab)
             {
-                GameObject effectGO = utils.Pool.Instance.Create(m_EffectPrefab);
-                effectGO.transform.position = transform.position;
+                GameObject effectGO = utils.Pool.Instance.Create(m_EffectPrefab, transform.position);
             }
 
             utils.Pool.Instance.Destroy(gameObject);
