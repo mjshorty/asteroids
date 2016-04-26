@@ -469,11 +469,7 @@ MonoBehaviour:
     m_PoolSize: 5
   - m_Prefab: {fileID: 136424, guid: bb72384d342d8bb41bbe0a3fe3ae15cf, type: 2}
     m_PoolSize: 5
-  - m_Prefab: {fileID: 136424, guid: b6958fc5b2efd3b468472e63729a6b03, type: 2}
-    m_PoolSize: 3
   - m_Prefab: {fileID: 185948, guid: 124bb307dd551d5408c90dbb961e931b, type: 2}
-    m_PoolSize: 3
-  - m_Prefab: {fileID: 0}
     m_PoolSize: 3
   - m_Prefab: {fileID: 136424, guid: e59442069dc3609499d9ddfc901aebef, type: 2}
     m_PoolSize: 3
@@ -613,8 +609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7d476cba1359f408e35b77a6669fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Width: 1600
-  m_Height: 1000
+  m_Width: 1920
+  m_Height: 1080
   m_Spacing: 25
   m_Mass: 1
 --- !u!4 &1063233873
