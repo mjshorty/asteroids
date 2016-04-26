@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 421396}
-  - 114: {fileID: 11480472}
+  - 114: {fileID: 11404420}
   - 33: {fileID: 3390470}
   - 23: {fileID: 2346744}
   - 135: {fileID: 13538600}
@@ -80,7 +80,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11480472
+--- !u!114 &11404420
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -94,9 +94,9 @@ MonoBehaviour:
   m_Dampening: 1
   m_Lives: 1
   m_Weapons: []
-  m_OnDeathEffectPrefab: {fileID: 136424, guid: 6ae7fda53adb8fb4b88ab7c52e72f118,
+  m_OnDeathEffectPrefab: {fileID: 136424, guid: f49e52748d41448419a6db7761367b89,
     type: 2}
-  m_GridForce: 1
+  m_GridForce: 0
   m_GridForceRadius: 100
   m_GridForceMagnitude: 100
   m_InitialHealth: 100

@@ -11,6 +11,10 @@ namespace entity
         [SerializeField]
         private List<spawn.Spawner> m_Spawners = new List<spawn.Spawner>();
 
+        private SpecialWeapon m_Bomb = null;
+
+        public SpecialWeapon Bomb { get { return m_Bomb; } set { m_Bomb = value; } }
+
         void OnTriggerEnter(Collider collision)
         {
             GameObject collider = collision.gameObject;
@@ -72,6 +76,15 @@ namespace entity
             if(Input.GetKey(KeyCode.Space))
             {
                 FireWeapons();
+            }
+
+            if(Input.GetKey(KeyCode.Return))
+            {
+                if(m_Bomb)
+                {
+                    m_Bomb.Fire();
+                    m_Bomb = null;
+                }
             }
         }
     }

@@ -17,6 +17,17 @@ namespace spawn
         [SerializeField]
         protected int m_NumberToSpawn = 3;
 
+        public delegate void DoForEach(GameObject go);
+
+        public void ForEachSpawn(DoForEach forEach)
+        {
+            int childCount = transform.childCount;
+            for(int i = 0; i < childCount; ++i)
+            {
+                forEach(transform.GetChild(i).gameObject);
+            }
+        }
+
         public void KillAll()
         {
             while (transform.childCount > 0)
