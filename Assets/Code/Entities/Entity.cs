@@ -26,10 +26,12 @@ namespace entity
         [SerializeField]
         private float m_GridForceMagnitude = 100.0f;
 
-        private grid.Grid m_Grid = null;
-
         [SerializeField]
         protected int m_InitialHealth = 100;
+
+        private grid.Grid m_Grid = null;
+
+        private int m_CurrentLives = 0;
 
         protected Vector3 m_Acceleration = Vector3.zero;
         protected Vector3 m_Velocity = Vector3.zero;
@@ -42,11 +44,11 @@ namespace entity
 
         public int Lives
         {
-            get { return m_Lives; }
+            get { return m_CurrentLives; }
             set
             {
-                bool lifeLost = value < m_Lives;
-                m_Lives = value;
+                bool lifeLost = value < m_CurrentLives;
+                m_CurrentLives = value;
 
                 if (lifeLost)
                 {
@@ -78,7 +80,7 @@ namespace entity
                         }
                     }
 
-                    if (m_Lives <= 0)
+                    if (m_CurrentLives <= 0)
                     {
                         OnDeath();
                         utils.Pool.Instance.Destroy(gameObject);
@@ -97,6 +99,7 @@ namespace entity
 
             m_InitialPosition = transform.position;
             m_InitialRotation = transform.rotation;
+            m_CurrentLives = m_Lives;
 
             ResetEntity();
         }
