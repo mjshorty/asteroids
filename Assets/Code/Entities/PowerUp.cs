@@ -11,6 +11,11 @@ namespace entity
         [SerializeField]
         private float m_RotateSpeed = 1.0f;
 
+        [SerializeField]
+        private float m_TimeAlive = 5.0f;
+
+        private float m_Elapsedtime = 0.0f;
+
         void OnTriggerEnter(Collider collision)
         {
             GameObject collider = collision.gameObject;
@@ -36,6 +41,12 @@ namespace entity
         protected override void UpdateEntity()
         {
             transform.Rotate(Vector3.forward, m_RotateSpeed * Time.deltaTime);
+
+            m_Elapsedtime += Time.deltaTime;
+            if(m_Elapsedtime > m_TimeAlive)
+            {
+                utils.Pool.Instance.Destroy(gameObject);
+            }
         }
     }
 }
