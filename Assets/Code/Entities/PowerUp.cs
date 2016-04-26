@@ -45,6 +45,7 @@ namespace entity
             m_Elapsedtime += Time.deltaTime;
             if(m_Elapsedtime > m_TimeAlive)
             {
+                m_Elapsedtime = 0.0f;
                 utils.Pool.Instance.Destroy(gameObject);
             }
         }
