@@ -8,6 +8,9 @@ namespace entity
         [SerializeField]
         private float m_RotationSpeed = 10.0f;
 
+        [SerializeField]
+        private List<spawn.Spawner> m_Spawners = new List<spawn.Spawner>();
+
         void OnTriggerEnter(Collider collision)
         {
             GameObject collider = collision.gameObject;
@@ -17,10 +20,24 @@ namespace entity
             }
         }
 
-        override protected void OnDeath()
+        void OnDestroy()
         {
-            game.Score.Instance.SaveScore();
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        }
+
+        override protected bool OnDeath(bool gameOver)
+        {
+            if (!gameOver)
+            {
+                game.Score.Instance.SaveScore();
+
+                foreach(var s in m_Spawners)
+                {
+                    s.KillAll();
+                }
+            }
+
+            return true;
         }
 
         // Update is called once per frame

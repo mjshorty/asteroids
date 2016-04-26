@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace entity
@@ -81,8 +82,15 @@ namespace entity
 
                     if (m_CurrentLives <= 0)
                     {
-                        OnDeath();
-                        utils.Pool.Instance.Destroy(gameObject);
+                        if(OnDeath(false))
+                        {
+                            // delayed destroy
+                            StartCoroutine(DelayedDestroy());
+                        }
+                        else
+                        {
+                            utils.Pool.Instance.Destroy(gameObject);
+                        }
                     }
                     else
                     {
@@ -90,6 +98,22 @@ namespace entity
                     }
                 }
             }
+        }
+        IEnumerator DelayedDestroy()
+        {
+            Renderer renderer = GetComponent<Renderer>();
+            if(renderer)
+            {
+                renderer.enabled = false;
+            }
+
+            foreach(var childRenderer in GetComponentsInChildren<Renderer>())
+            {
+                childRenderer.enabled = false;
+            }
+
+            yield return new WaitForSeconds(3.0f);
+            utils.Pool.Instance.Destroy(gameObject);
         }
 
         void Start()
@@ -110,7 +134,12 @@ namespace entity
             }
         }
 
-        virtual protected void OnDeath() { }
+        public void GameOverDeath()
+        {
+            OnDeath(true);
+        }
+
+        virtual protected bool OnDeath(bool gameOver) { return false; }
 
         virtual protected void UpdateEntity() {}
 

@@ -23,15 +23,19 @@ namespace entity
             m_Velocity = m_ConstantVelocity;
         }
 
-        protected override void OnDeath()
+        protected override bool OnDeath(bool gameOver)
         {
-            base.OnDeath();
-            game.Score.Instance.Award(m_AwardOnKill);
-
-            if (Spawner)
+            if (!gameOver)
             {
-                Spawner.SpawnMiniAsteroid(m_MiniPrefab, transform.position, 4);
+                game.Score.Instance.Award(m_AwardOnKill);
+
+                if (Spawner)
+                {
+                    Spawner.SpawnMiniAsteroid(m_MiniPrefab, transform.position, 4);
+                }
             }
+
+            return false;
         }
     }
 }

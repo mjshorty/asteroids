@@ -17,6 +17,25 @@ namespace spawn
         [SerializeField]
         protected int m_NumberToSpawn = 3;
 
+        public void KillAll()
+        {
+            while (transform.childCount > 0)
+            {
+                int i = transform.childCount - 1;
+                GameObject go = transform.GetChild(i).gameObject;
+
+                entity.Entity entityGO = go.GetComponent<entity.Entity>();
+                if(entityGO)
+                {
+                    entityGO.GameOverDeath();
+                }
+
+                utils.Pool.Instance.Destroy(go);
+            }
+
+            enabled = false;
+        }
+
         void OnDestroy()
         {
             while(transform.childCount > 0)
