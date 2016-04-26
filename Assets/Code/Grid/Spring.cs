@@ -10,12 +10,34 @@ namespace grid
     /// </summary>
     public class Spring
     {
+        /// <summary>
+        /// The two conntections at either end of the spring
+        /// </summary>
         private Mass[] m_Connections = new Mass[2];
+
+        /// <summary>
+        /// The desired length of the spring
+        /// </summary>
         private float m_TargetLength;
+
+        /// <summary>
+        /// The stiffenss of the spring
+        /// </summary>
         private float m_Stiffness;
+
+        /// <summary>
+        /// The dampening applied to any force
+        /// </summary>
         private float m_Dampening;
 
+        /// <summary>
+        /// Get the first connection
+        /// </summary>
         public Mass ConnectionOne { get { return m_Connections[0]; } }
+
+        /// <summary>
+        /// Get the second connection
+        /// </summary>
         public Mass ConnectionTwo { get { return m_Connections[1]; } }
 
         /// <summary>

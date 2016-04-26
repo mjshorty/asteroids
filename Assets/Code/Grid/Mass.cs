@@ -12,13 +12,38 @@ namespace grid
     /// </summary>
     public class Mass
     {
+        /// <summary>
+        /// The position of the point of mass
+        /// </summary>
         private Vector3 m_Position;
-        private Vector3 m_Velocity;
-        private Vector3 m_Acceleration;
-        private float m_Dampening;
-        private float m_InverseMass; // 1 / mass
 
+        /// <summary>
+        /// The velocity of the point of mass
+        /// </summary>
+        private Vector3 m_Velocity;
+
+        /// <summary>
+        /// The acceleration of the point of mass
+        /// </summary>
+        private Vector3 m_Acceleration;
+
+        /// <summary>
+        /// The dampening of the point of mass
+        /// </summary>
+        private float m_Dampening;
+        /// <summary>
+        /// The ingverse mass (1/mass) of the point of mass
+        /// </summary>
+        private float m_InverseMass;
+
+        /// <summary>
+        /// Get the poisition of the mass
+        /// </summary>
         public Vector3 Position { get { return m_Position; } }
+
+        /// <summary>
+        /// Get the velocity of the mass
+        /// </summary>
         public Vector3 Velocity { get { return m_Velocity; } }
 
         /// <summary>

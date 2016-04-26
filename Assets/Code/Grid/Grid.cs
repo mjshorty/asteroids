@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Used below website as reference
+// http://gamedevelopment.tutsplus.com/tutorials/make-a-neon-vector-shooter-for-ios-the-warping-grid--gamedev-14637
+
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace grid
@@ -8,6 +11,9 @@ namespace grid
     /// </summary>
     public class Grid : utils.Singleton<Grid>
     {
+        /// <summary>
+        /// The various forces we can apply to the grid
+        /// </summary>
         public enum Force
         {
             Explosion,
@@ -15,24 +21,57 @@ namespace grid
             Directed
         }
 
+        /// <summary>
+        /// The width of the grid
+        /// </summary>
         [SerializeField]
         private int m_Width = 400;
 
+        /// <summary>
+        /// The height of the grid
+        /// </summary>
         [SerializeField]
         private int m_Height = 300;
 
+        /// <summary>
+        /// The dynamic springs in the grid
+        /// </summary>
         private List<Spring> m_Springs = null;
+
+        /// <summary>
+        /// The anchor springs in the grid
+        /// </summary>
         private List<Spring> m_AnchorSprings = null;
 
+        /// <summary>
+        /// The dynamic points of mass in the grid
+        /// </summary>
         private List<Mass> m_DynamicPoints = null;
+
+        /// <summary>
+        /// The anchor points of mass in the grid
+        /// </summary>
         private List<Mass> m_AnchorPoints = null;
 
+        /// <summary>
+        /// Get the dynamic points of mass
+        /// </summary>
         public List<Mass> DynamicPoints { get { return m_DynamicPoints; } }
+
+        /// <summary>
+        /// Get the dynamic springs
+        /// </summary>
         public List<Spring> Springs { get { return m_Springs; } }
 
+        /// <summary>
+        /// The spacing between points of mass
+        /// </summary>
         [SerializeField]
         private float m_Spacing = 100.0f;
 
+        /// <summary>
+        /// The default mass of a single point
+        /// </summary>
         [SerializeField]
         private float m_Mass = 1.0f;
 
@@ -114,7 +153,9 @@ namespace grid
             return m_DynamicPoints[index];
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// Update the grid
+        /// </summary>
         public void Update()
         {
             int numSprings = m_Springs.Count;

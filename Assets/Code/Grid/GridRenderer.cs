@@ -3,19 +3,41 @@ using System.Collections.Generic;
 
 namespace grid
 {
+    /// <summary>
+    /// Generate a series of lines to render the grid
+    /// </summary>
     public class GridRenderer : MonoBehaviour
     {
+        /// <summary>
+        /// The line renderer mesh
+        /// </summary>
         private LineRenderer m_Renderer = null;
+
+        /// <summary>
+        /// The grid we want to render
+        /// </summary>
         private Grid m_Grid = null;
 
+        /// <summary>
+        /// The width of the lines in the grid
+        /// </summary>
         [SerializeField]
         private float m_LineWidth = 2.0f;
 
+        /// <summary>
+        /// The vertext positions used to render the grid
+        /// </summary>
         private List<Vector3> m_Vertices = new List<Vector3>();
 
+        /// <summary>
+        /// The colour of the line
+        /// </summary>
         [SerializeField]
         private Color m_LineColour = Color.blue;
 
+        /// <summary>
+        /// The material used to render the line
+        /// </summary>
         [SerializeField]
         private Material m_Material = null;
 
@@ -25,6 +47,8 @@ namespace grid
         void Start()
         {
             // Get or create our renderer
+            // were using a line renderer here, not the best solution
+            // but its really quick and easy to use
             m_Renderer = GetComponent<LineRenderer>();
             if (m_Renderer == null)
             {
