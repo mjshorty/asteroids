@@ -106,6 +106,9 @@ namespace entity
 
                     if (m_CurrentLives <= 0)
                     {
+                        game.Camera gameCamera = Camera.main.GetComponent<game.Camera>();
+                        gameCamera.Shake();
+
                         if(OnDeath(false))
                         {
                             // delayed destroy
