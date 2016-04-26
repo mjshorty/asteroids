@@ -19,7 +19,9 @@ namespace ui
         // Update is called once per frame
         void Update()
         {
-            m_HealthBar.fillAmount = m_Player.HealthPercentage;
+            Vector3 scale = m_HealthBar.transform.localScale;
+            scale.x = m_Player.HealthPercentage;
+            m_HealthBar.transform.localScale = scale;
         }
     }
 }
