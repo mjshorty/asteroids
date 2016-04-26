@@ -199,8 +199,8 @@ MonoBehaviour:
   m_OnDeathEffectPrefab: {fileID: 136424, guid: b6958fc5b2efd3b468472e63729a6b03,
     type: 2}
   m_GridForce: 0
-  m_GridForceRadius: 400
-  m_GridForceMagnitude: 200
+  m_GridForceRadius: 300
+  m_GridForceMagnitude: 150
   m_InitialHealth: 100
   m_RotationSpeed: 80
 --- !u!114 &11492720

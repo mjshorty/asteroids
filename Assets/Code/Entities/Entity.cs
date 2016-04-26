@@ -29,8 +29,6 @@ namespace entity
         [SerializeField]
         protected int m_InitialHealth = 100;
 
-        private grid.Grid m_Grid = null;
-
         private int m_CurrentLives = 0;
 
         protected Vector3 m_Acceleration = Vector3.zero;
@@ -58,15 +56,16 @@ namespace entity
                         effectGO.transform.position = transform.position;
                     }
 
-                    if(m_Grid)
+                    grid.Grid gameGrid = grid.Grid.Instance;
+                    if(gameGrid)
                     {
                         if (m_GridForce == grid.Grid.Force.Explosion)
                         {
-                            m_Grid.ApplyExplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
+                            gameGrid.ApplyExplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
                         }
                         else if(m_GridForce == grid.Grid.Force.Implosion)
                         {
-                            m_Grid.ApplyImplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
+                            gameGrid.ApplyImplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
                         }
                         else
                         {
@@ -76,7 +75,7 @@ namespace entity
                             direction.x -= Mathf.Sin(rotation);
                             direction.y += Mathf.Cos(rotation);
 
-                            m_Grid.ApplyDirectedForce(direction * m_GridForceMagnitude, transform.position, m_GridForceRadius);
+                            gameGrid.ApplyDirectedForce(direction * m_GridForceMagnitude, transform.position, m_GridForceRadius);
                         }
                     }
 
@@ -95,8 +94,6 @@ namespace entity
 
         void Start()
         {
-            m_Grid = FindObjectOfType<grid.Grid>();
-
             m_InitialPosition = transform.position;
             m_InitialRotation = transform.rotation;
             m_CurrentLives = m_Lives;

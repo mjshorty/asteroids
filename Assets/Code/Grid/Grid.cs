@@ -6,7 +6,7 @@ namespace grid
     /// <summary>
     /// Generate a grid of points of mass interconnected with springs
     /// </summary>
-    public class Grid : MonoBehaviour
+    public class Grid : utils.Singleton<Grid>
     {
         public enum Force
         {

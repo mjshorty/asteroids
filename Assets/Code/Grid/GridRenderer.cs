@@ -31,6 +31,8 @@ namespace grid
                 m_Renderer = gameObject.AddComponent<LineRenderer>();
             }
 
+            m_Material.renderQueue = 0;
+
             m_Renderer.material = m_Material;
             m_Renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             m_Renderer.receiveShadows = false;
