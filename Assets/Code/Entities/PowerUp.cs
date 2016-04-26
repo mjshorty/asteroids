@@ -19,13 +19,16 @@ namespace entity
                 Player player = collider.GetComponent<Player>();
                 if(player != null)
                 {
-                    GameObject powerUp = utils.Pool.Instance.Create(m_PowerUpPrefab.gameObject) as GameObject;
-                    powerUp.transform.parent = player.transform;
-                    powerUp.transform.position = player.transform.position;
+                    if (player.Bomb == null)
+                    {
+                        GameObject powerUp = utils.Pool.Instance.Create(m_PowerUpPrefab.gameObject) as GameObject;
+                        powerUp.transform.parent = player.transform;
+                        powerUp.transform.position = player.transform.position;
 
-                    player.Bomb = powerUp.GetComponent<SpecialWeapon>();
+                        player.Bomb = powerUp.GetComponent<SpecialWeapon>();
 
-                    Lives = 0;
+                        Lives = 0;
+                    }
                 }
             }
         }
