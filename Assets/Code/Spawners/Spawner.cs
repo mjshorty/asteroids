@@ -33,7 +33,7 @@ namespace spawn
                 utils.Pool.Instance.Destroy(go);
             }
 
-            enabled = false;
+            enabled = false;    
         }
 
         void OnDestroy()
