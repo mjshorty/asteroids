@@ -12,7 +12,7 @@ namespace spawn
 
         protected override bool CanSpawn()
         {
-            int spawnModulus = entity.Player.Score / m_SpawnWhenScoreIsMultipleOf;
+            int spawnModulus = game.Score.Instance.CurrentScore / m_SpawnWhenScoreIsMultipleOf;
 
             if (spawnModulus > m_SpawnCount)
             {

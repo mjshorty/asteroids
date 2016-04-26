@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace ui
 {
-    public class Score : MonoBehaviour
+    public class LastScore : MonoBehaviour
     {
         private UnityEngine.UI.Text m_TextBox = null;
 
@@ -16,7 +16,7 @@ namespace ui
         // Update is called once per frame
         void Update()
         {
-            string text = "Score: " + game.Score.Instance.CurrentScore.ToString();
+            string text = "Score: " + game.Score.Instance.LastScore.ToString();
             m_TextBox.text = text;
         }
     }

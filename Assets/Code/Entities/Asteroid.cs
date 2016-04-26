@@ -26,7 +26,7 @@ namespace entity
         protected override void OnDeath()
         {
             base.OnDeath();
-            Player.Score += m_AwardOnKill;
+            game.Score.Instance.Award(m_AwardOnKill);
 
             if (Spawner)
             {

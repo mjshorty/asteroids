@@ -8,10 +8,6 @@ namespace entity
         [SerializeField]
         private float m_RotationSpeed = 10.0f;
 
-        private static int m_Score = 0;
-
-        public static int Score { get { return m_Score; } set { m_Score = value; } }
-
         void OnTriggerEnter(Collider collision)
         {
             GameObject collider = collision.gameObject;
@@ -23,6 +19,7 @@ namespace entity
 
         override protected void OnDeath()
         {
+            game.Score.Instance.SaveScore();
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
 

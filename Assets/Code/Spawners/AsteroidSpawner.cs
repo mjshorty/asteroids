@@ -38,7 +38,7 @@ namespace spawn
         override protected int GetSpawnCount()
         {
             int numToSpawn = m_NumberToSpawn;
-            numToSpawn += entity.Player.Score / m_IncreaseSpawnCountByScore;
+            numToSpawn += game.Score.Instance.CurrentScore / m_IncreaseSpawnCountByScore;
             numToSpawn = Mathf.Min(numToSpawn, m_MaxSpawnCount);
 
             return numToSpawn;
