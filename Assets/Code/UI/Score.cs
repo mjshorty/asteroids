@@ -3,17 +3,27 @@ using System.Collections;
 
 namespace ui
 {
+    /// <summary>
+    /// Show the players current score
+    /// </summary>
     public class Score : MonoBehaviour
     {
+        /// <summary>
+        /// The text box used to display the current score
+        /// </summary>
         private UnityEngine.UI.Text m_TextBox = null;
 
-        // Use this for initialization
+        /// <summary>
+        /// Fixup the class
+        /// </summary>
         void Start()
         {
             m_TextBox = GetComponent<UnityEngine.UI.Text>();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// Update the current score text box
+        /// </summary>
         void Update()
         {
             string text = "Score: " + game.Score.Instance.CurrentScore.ToString();

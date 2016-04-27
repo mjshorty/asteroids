@@ -3,12 +3,17 @@ using System.Collections;
 
 namespace ui
 {
+    /// <summary>
+    /// Display the powerup image
+    /// </summary>
     public class PowerUp : MonoBehaviour
     {
         [SerializeField]
         private entity.Player m_Player = null;
 
-        // Update is called once per frame
+        /// <summary>
+        /// Update the powerup image
+        /// </summary>
         void Update()
         {
             bool powerUp = m_Player.Bomb != null;

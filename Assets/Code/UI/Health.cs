@@ -3,20 +3,33 @@ using System.Collections;
 
 namespace ui
 {
+    /// <summary>
+    /// Display the players current heath
+    /// </summary>
     public class Health : MonoBehaviour
     {
+        /// <summary>
+        /// The health bar ui image
+        /// </summary>
         private UnityEngine.UI.Image m_HealthBar = null;
 
+        /// <summary>
+        /// The player
+        /// </summary>
         [SerializeField]
         private entity.Entity m_Player = null;
 
-        // Use this for initialization
+        /// <summary>
+        /// Fixup the health bar
+        /// </summary>
         void Start()
         {
             m_HealthBar = GetComponent<UnityEngine.UI.Image>();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// Update the health bar
+        /// </summary>
         void Update()
         {
             Vector3 scale = m_HealthBar.transform.localScale;
