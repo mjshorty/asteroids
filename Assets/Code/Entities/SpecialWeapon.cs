@@ -50,39 +50,21 @@ namespace entity
         /// Kill all asteroids in range
         /// </summary>
         /// <param name="go">The asteroid game object</param>
-        private void KillAsteroids(GameObject go)
+        private void KillEntity(GameObject go)
         {
-            entity.Asteroid asteroid = go.GetComponent<Asteroid>();
-            if(asteroid == null)
+            Entity entity = go.GetComponent<Asteroid>() as Entity;
+            if (entity == null)
             {
-                return;
+                entity = go.GetComponent<Enemy>() as Entity;
             }
 
-            float sqrDst = Vector3.SqrMagnitude(transform.position - go.transform.position);
-            if(sqrDst < (m_Radius * m_Radius))
+            if (entity != null)
             {
-                asteroid.Lives = 0;
-            }
-        }
-
-        /// <summary>
-        /// Apply damage to all spaceships in range
-        /// </summary>
-        /// <param name="go">The spaceship game object</param>
-        private void DamageSpaceships(GameObject go)
-        {
-            entity.Enemy enemy = go.GetComponent<Enemy>();
-            if (enemy == null)
-            {
-                return;
-            }
-
-            float sqrDst = Vector3.SqrMagnitude(transform.position - go.transform.position);
-            if (sqrDst < (m_Radius * m_Radius))
-            {
-                float scale = 1.0f - Mathf.Clamp01(sqrDst / (m_Radius * m_Radius));
-                int damage = (int)((float)m_Damage * scale);
-                enemy.ApplyDamage(damage);
+                float sqrDst = Vector3.SqrMagnitude(transform.position - go.transform.position);
+                if (sqrDst < (m_Radius * m_Radius))
+                {
+                    entity.Lives = 0;
+                }
             }
         }
 
@@ -93,12 +75,12 @@ namespace entity
         {
             if(m_AsteroidSpawner)
             {
-                m_AsteroidSpawner.ForEachSpawn(KillAsteroids);
+                m_AsteroidSpawner.ForEachSpawn(KillEntity);
             }
 
             if(m_SpaceshipSpawner)
             {
-                m_SpaceshipSpawner.ForEachSpawn(DamageSpaceships);
+                m_SpaceshipSpawner.ForEachSpawn(KillEntity);
             }
 
             grid.Grid.Instance.ApplyExplosiveForce(m_Damage, transform.position, m_Radius);
