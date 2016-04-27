@@ -178,6 +178,10 @@ Prefab:
       propertyPath: m_Spawners.Array.data[1]
       value: 
       objectReference: {fileID: 412781139}
+    - target: {fileID: 139994, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5197c055f16e91045bfab6be8a97710b, type: 2}
   m_IsPrefabParent: 0
@@ -1116,6 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Prefabs:
   - {fileID: 150614, guid: 1993819485b14c6448d96ba7f380dfd5, type: 2}
+  - {fileID: 150614, guid: 7c59bc43e9ea4fd418e35087213063cb, type: 2}
   m_RandomPrefab: 1
   SpawnRange: {x: 300, y: 200}
   m_NumberToSpawn: 1

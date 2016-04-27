@@ -25,13 +25,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 454980}
-  - 114: {fileID: 11499098}
+  - 114: {fileID: 11466820}
   - 33: {fileID: 3337522}
   - 23: {fileID: 2368654}
   - 135: {fileID: 13538600}
   - 54: {fileID: 5474506}
   m_Layer: 12
-  m_Name: PowerUp
+  m_Name: BombPowerUp
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11499098
+--- !u!114 &11466820
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 150614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084e6208e7e3e4d49a350188526c955f, type: 3}
+  m_Script: {fileID: 11500000, guid: e19472fcd743925498c2107f1e6a98df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Dampening: 0.95
@@ -163,8 +163,10 @@ MonoBehaviour:
   m_GridForceRadius: 10
   m_GridForceMagnitude: 100
   m_InitialHealth: 100
+  m_InvincibleTime: 0
   m_PowerUpPrefab: {fileID: 11464752, guid: 124bb307dd551d5408c90dbb961e931b, type: 2}
   m_RotateSpeed: 90
+  m_TimeAlive: 5
 --- !u!135 &13538600
 SphereCollider:
   m_ObjectHideFlags: 1

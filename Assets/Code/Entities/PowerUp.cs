@@ -12,8 +12,8 @@ namespace entity
         /// <summary>
         /// The prefab we will assign to the player
         /// </summary>
-        [SerializeField]
-        private SpecialWeapon m_PowerUpPrefab = null;
+        [SerializeField]    
+        protected SpecialWeapon m_PowerUpPrefab = null;
 
         /// <summary>
         /// The speed at which this powerup will rotate
@@ -33,6 +33,12 @@ namespace entity
         private float m_Elapsedtime = 0.0f;
 
         /// <summary>
+        /// Award the game object a power up 
+        /// </summary>
+        /// <param name="player">The player to give the powerup to</param>
+        virtual protected void AwardPowerUp(Player player) { }
+
+        /// <summary>
         /// Handle collision with the player
         /// </summary>
         /// <param name="collision">The collision data</param>
@@ -44,14 +50,7 @@ namespace entity
                 Player player = collider.GetComponent<Player>();
                 if(player != null)
                 {
-                    if (player.Bomb == null)
-                    {
-                        GameObject powerUp = utils.Pool.Instance.Create(m_PowerUpPrefab.gameObject, player.transform.position, player.transform) as GameObject;
-
-                        player.Bomb = powerUp.GetComponent<SpecialWeapon>();
-
-                        Lives = 0;
-                    }
+                    AwardPowerUp(player);
                 }
             }
         }
