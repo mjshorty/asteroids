@@ -21,10 +21,11 @@ namespace spawn
 
         public void ForEachSpawn(DoForEach forEach)
         {
-            int childCount = transform.childCount;
-            for(int i = 0; i < childCount; ++i)
+            int i = transform.childCount - 1;
+            for(; i > 0; --i)
             {
-                forEach(transform.GetChild(i).gameObject);
+                Transform child = transform.GetChild(i);
+                forEach(child.gameObject);
             }
         }
 
@@ -54,7 +55,10 @@ namespace spawn
                 int i = transform.childCount - 1;
                 GameObject go = transform.GetChild(i).gameObject;
 
-                utils.Pool.Instance.Destroy(go);
+                if (utils.Pool.IsValid)
+                {
+                    utils.Pool.Instance.Destroy(go);
+                }
             }
         }
 

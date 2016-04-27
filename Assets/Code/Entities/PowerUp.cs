@@ -56,6 +56,14 @@ namespace entity
         }
 
         /// <summary>
+        /// Reset the entity to its original state
+        /// </summary>
+        override protected void OnResetEntity()
+        {
+            m_Elapsedtime = 0.0f;
+        }
+
+        /// <summary>
         /// Update the entity
         /// </summary>
         protected override void UpdateEntity()
