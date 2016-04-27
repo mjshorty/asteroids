@@ -743,6 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Grid: {fileID: 1063233874}
   m_CameraOffset: 600
+  m_MaxCameraShake: 5
 --- !u!114 &1339601068 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11426262, guid: 5197c055f16e91045bfab6be8a97710b,
