@@ -189,15 +189,15 @@ namespace utils
         /// <param name="onlyActive">Only send to active game objects?</param>
         private void SendMessage(GameObject go, string message, bool onlyActive)
         {
+            if (!onlyActive || go.activeSelf)
+            {
+                go.SendMessage(message, null, SendMessageOptions.DontRequireReceiver);
+            }
+
             int childCount = go.transform.childCount;
             for(int i = 0; i < childCount; ++i)
             {
                 GameObject child = go.transform.GetChild(i).gameObject;
-                if (!onlyActive || child.activeSelf)
-                {
-                    child.SendMessage(message, null, SendMessageOptions.DontRequireReceiver);
-                }
-
                 SendMessage(child, message, onlyActive);
             }
         }

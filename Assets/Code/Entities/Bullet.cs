@@ -27,6 +27,28 @@ namespace entity
         private float m_Dampening = 1.0f;
 
         /// <summary>
+        /// The length of time that the bullet is alive for
+        /// </summary>
+        [SerializeField]
+        private float m_Life = 2.0f;
+
+        /// <summary>
+        /// The age of the bullet
+        /// </summary>
+        private float m_ElapsedTime = 0.0f;
+
+        /// <summary>
+        /// Kill the bullet when it is offscreen?
+        /// </summary>
+        [SerializeField]
+        private bool m_KillWhenOffscreen = false;
+
+        void Start()
+        {
+            m_ElapsedTime = 0.0f;
+        }
+
+        /// <summary>
         /// Handle the bullet colliding with another entity
         /// </summary>
         /// <param name="collision">the collision data</param>
@@ -67,8 +89,23 @@ namespace entity
         /// </summary>
         void Update()
         {
-            KillWhenOffScreen();
+            if (m_KillWhenOffscreen)
+            {
+                KillWhenOffScreen();
+            }
+            else
+            {
+                Utils.UpdateScreenWrap(gameObject);
+            }
+
             CalculatePosition();
+
+            // kill the bullet if its life has expired
+            m_ElapsedTime += Time.deltaTime;
+            if(m_ElapsedTime > m_Life)
+            {
+                utils.Pool.Instance.Destroy(gameObject);
+            }
         }
 
         /// <summary>
