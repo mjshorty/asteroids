@@ -3,22 +3,42 @@ using System.Collections;
 
 namespace game
 {
+    /// <summary>
+    /// A basic game camera class
+    /// </summary>
     public class Camera : MonoBehaviour
     {
+        /// <summary>
+        /// The in game background grid
+        /// </summary>
         [SerializeField]
         private grid.GridRenderer m_Grid = null;
 
+        /// <summary>
+        /// The unity camera component
+        /// </summary>
         private Camera m_Camera = null;
 
+        /// <summary>
+        /// The distance the camera is from the origin
+        /// </summary>
         [SerializeField]
         private float m_CameraOffset = 750.0f;
 
+        /// <summary>
+        /// The original, cached position of the camera
+        /// </summary>
         private Vector3 m_OriginalPosition = Vector3.zero;
 
+        /// <summary>
+        /// The amount of shake to apply to the camera
+        /// </summary>
         [SerializeField]
         private float m_MaxCameraShake = 5.0f;
 
-        // Use this for initialization
+        /// <summary>
+        /// Initialise the camera class
+        /// </summary>
         void Start()
         {
             m_Camera = GetComponent<Camera>();
@@ -30,7 +50,9 @@ namespace game
             m_OriginalPosition = transform.position;
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// Update the position of the camera
+        /// </summary>
         void Update()
         {
             Transform gridTransform = m_Grid.transform;
@@ -40,6 +62,10 @@ namespace game
             transform.position = cameraPos;
         }
 
+        /// <summary>
+        /// Shake the camera
+        /// </summary>
+        /// <param name="shakeScale">The amount of shake to apply</param>
         public void Shake(float shakeScale)
         {
             if (shakeScale > 0.0f)
@@ -49,6 +75,10 @@ namespace game
             }
         }
 
+        /// <summary>
+        /// Shake camera coroutine
+        /// </summary>
+        /// <param name="shakeScale">The amount of shake to apply</param>
         private IEnumerator ShakeCamera(float shakeScale)
         {
             float elapsedTime = 0.0f;
