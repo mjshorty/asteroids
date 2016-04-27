@@ -80,6 +80,12 @@ namespace entity
         /// </summary>
         public bool IsInvincible { get { return m_ElapsedInvincibleTime < m_InvincibleTime; } }
 
+        /// <summary>
+        /// The level of shake to apply to the camera on death
+        /// </summary>
+        [SerializeField]
+        private float m_CameraShakeScale = 1.0f;
+
         // Get or set the current nubmer of lives the entity has
         // Setting this to 0 may kill the entity
         public int Lives
@@ -128,7 +134,7 @@ namespace entity
                     if (m_CurrentLives <= 0)
                     {
                         game.Camera gameCamera = Camera.main.GetComponent<game.Camera>();
-                        gameCamera.Shake();
+                        gameCamera.Shake(m_CameraShakeScale);
 
                         if(OnDeath(false))
                         {

@@ -100,6 +100,8 @@ MonoBehaviour:
   m_GridForceRadius: 100
   m_GridForceMagnitude: 100
   m_InitialHealth: 100
+  m_InvincibleTime: 0
+  m_CameraShakeScale: 0.75
   m_ConstantVelocity: {x: 60, y: 60, z: 0}
   m_AwardOnKill: 1000
   m_MiniPrefab: {fileID: 139972, guid: a74dc3db24a708140868344eb6ef7c49, type: 2}

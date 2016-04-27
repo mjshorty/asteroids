@@ -15,6 +15,9 @@ namespace game
 
         private Vector3 m_OriginalPosition = Vector3.zero;
 
+        [SerializeField]
+        private float m_MaxCameraShake = 5.0f;
+
         // Use this for initialization
         void Start()
         {
@@ -37,13 +40,16 @@ namespace game
             transform.position = cameraPos;
         }
 
-        public void Shake()
+        public void Shake(float shakeScale)
         {
-            StopCoroutine(ShakeCamera());
-            StartCoroutine(ShakeCamera());
+            if (shakeScale > 0.0f)
+            {
+                StopCoroutine(ShakeCamera(shakeScale));
+                StartCoroutine(ShakeCamera(shakeScale));
+            }
         }
 
-        private IEnumerator ShakeCamera()
+        private IEnumerator ShakeCamera(float shakeScale)
         {
             float elapsedTime = 0.0f;
 
@@ -56,9 +62,11 @@ namespace game
                     yield break;
                 }
 
+                float maxShake = m_MaxCameraShake * shakeScale;
+
                 Vector3 offset = m_OriginalPosition;
-                offset.x += Random.Range(-5.0f, 5.0f);
-                offset.y += Random.Range(-5.0f, 5.0f);
+                offset.x += Random.Range(-maxShake, maxShake);
+                offset.y += Random.Range(-maxShake, maxShake);
                 offset.z -= m_CameraOffset;
 
                 transform.position = offset;

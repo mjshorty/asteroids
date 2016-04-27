@@ -101,6 +101,7 @@ MonoBehaviour:
   m_GridForceMagnitude: 100
   m_InitialHealth: 100
   m_InvincibleTime: 0
+  m_CameraShakeScale: 0
   m_PowerUpPrefab: {fileID: 11464752, guid: 124bb307dd551d5408c90dbb961e931b, type: 2}
   m_RotateSpeed: 0
   m_TimeAlive: 5

@@ -202,6 +202,8 @@ MonoBehaviour:
   m_GridForceRadius: 50
   m_GridForceMagnitude: 100
   m_InitialHealth: 75
+  m_InvincibleTime: 0
+  m_CameraShakeScale: 0.5
   m_PositionalAcceleration: 15
   m_RotationAcceleration: 0.05
   m_Accuracy: 0.25
