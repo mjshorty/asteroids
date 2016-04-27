@@ -477,6 +477,8 @@ MonoBehaviour:
     m_PoolSize: 3
   - m_Prefab: {fileID: 136424, guid: e59442069dc3609499d9ddfc901aebef, type: 2}
     m_PoolSize: 3
+  - m_Prefab: {fileID: 136424, guid: d5e4b01cb1d51ad4b990577af772fc38, type: 2}
+    m_PoolSize: 30
 --- !u!4 &940531597
 Transform:
   m_ObjectHideFlags: 0

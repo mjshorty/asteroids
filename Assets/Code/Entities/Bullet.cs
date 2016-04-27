@@ -43,6 +43,12 @@ namespace entity
         [SerializeField]
         private bool m_KillWhenOffscreen = false;
 
+        /// <summary>
+        /// The effect to play when we hit another object
+        /// </summary>
+        [SerializeField]
+        private GameObject m_ImpactPrefab = null;
+
         void Start()
         {
             m_ElapsedTime = 0.0f;
@@ -59,6 +65,7 @@ namespace entity
             {
                 if (collider.tag == "Enemy")
                 {
+                    utils.Pool.Instance.Create(m_ImpactPrefab, transform.position);
                     utils.Pool.Instance.Destroy(gameObject);
 
                     Enemy enemy = collider.GetComponent<Enemy>();
@@ -66,6 +73,7 @@ namespace entity
                 }
                 else if (collider.tag == "Asteroid")
                 {
+                    utils.Pool.Instance.Create(m_ImpactPrefab, transform.position);
                     utils.Pool.Instance.Destroy(gameObject);
 
                     Asteroid asteroid = collider.GetComponent<Asteroid>();
@@ -76,6 +84,7 @@ namespace entity
             {
                 if (collider.tag == "Player")
                 {
+                    utils.Pool.Instance.Create(m_ImpactPrefab, transform.position);
                     utils.Pool.Instance.Destroy(gameObject);
 
                     Player player = collider.GetComponent<Player>();

@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Damage: 25
   m_Velocity: 300
   m_Dampening: 1
+  m_Life: 2
+  m_KillWhenOffscreen: 0
+  m_ImpactPrefab: {fileID: 136424, guid: d5e4b01cb1d51ad4b990577af772fc38, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
