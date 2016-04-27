@@ -64,6 +64,22 @@ namespace entity
         // Get the percentage of health left
         public float HealthPercentage { get { return (float)m_Health / (float)m_InitialHealth; } }
 
+        /// <summary>
+        /// The amount of time te entity will be invincible after spawning
+        /// </summary>
+        [SerializeField]
+        private float m_InvincibleTime = 0.0f;
+
+        /// <summary>
+        /// The amount of time that the entity has been invincible for
+        /// </summary>
+        private float m_ElapsedInvincibleTime = 0.0f;
+
+        /// <summary>
+        /// Check to see if the entity is currently invincible
+        /// </summary>
+        public bool IsInvincible { get { return m_ElapsedInvincibleTime < m_InvincibleTime; } }
+
         // Get or set the current nubmer of lives the entity has
         // Setting this to 0 may kill the entity
         public int Lives
@@ -72,6 +88,11 @@ namespace entity
             set
             {
                 bool lifeLost = value < m_CurrentLives;
+                if(lifeLost && IsInvincible)
+                {
+                    return;
+                }
+
                 m_CurrentLives = value;
 
                 if (lifeLost)
@@ -166,10 +187,13 @@ namespace entity
         /// <param name="damage">Th amount of damage to apply</param>
         public void ApplyDamage(int damage)
         {
-            m_Health -= damage;
-            if (m_Health <= 0)
+            if (!IsInvincible)
             {
-                Lives = Lives - 1;
+                m_Health -= damage;
+                if (m_Health <= 0)
+                {
+                    Lives = Lives - 1;
+                }
             }
         }
 
@@ -199,7 +223,7 @@ namespace entity
         virtual protected void OnResetEntity() {}
 
         /// <summary>
-        /// Reset the entities transform
+        /// Reset the entities stats
         /// </summary>
         protected void ResetEntity()
         {
@@ -209,6 +233,8 @@ namespace entity
 
             transform.position = m_InitialPosition;
             transform.rotation = m_InitialRotation;
+
+            m_ElapsedInvincibleTime = 0.0f;
 
             OnResetEntity();
         }
@@ -300,6 +326,11 @@ namespace entity
             UpdateEntity();
             UpdatePosition();
             UpdateScreenWrap();
+
+            if(IsInvincible)
+            {
+                m_ElapsedInvincibleTime += Time.deltaTime;
+            }
         }
 
         /// <summary>
