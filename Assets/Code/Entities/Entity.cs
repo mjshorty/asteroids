@@ -113,6 +113,14 @@ namespace entity
         }
 
         /// <summary>
+        /// Restore the entities health
+        /// </summary>
+        public void RestoreHealth()
+        {
+            m_Health = m_InitialHealth;
+        }
+
+        /// <summary>
         /// Kill the entity
         /// </summary>
         private void KillEntity()

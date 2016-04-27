@@ -15,8 +15,10 @@ namespace entity
             if (player.Lives < 3)
             {
                 player.Lives += 1;
-                Lives = 0;
             }
+
+            player.RestoreHealth();
+            Lives = 0;
         }
     }
 }
