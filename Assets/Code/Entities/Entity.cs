@@ -103,53 +103,79 @@ namespace entity
 
                 if (lifeLost)
                 {
-                    if (m_OnDeathEffectPrefab)
-                    {
-                        GameObject effectGO = utils.Pool.Instance.Create(m_OnDeathEffectPrefab, transform.position);
-                    }
+                    PlayDeathPrefab();
+                    ApplyGridForce();
+                    KillEntity();
+                }
 
-                    grid.Grid gameGrid = grid.Grid.Instance;
-                    if(gameGrid)
-                    {
-                        if (m_GridForce == grid.Grid.Force.Explosion)
-                        {
-                            gameGrid.ApplyExplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
-                        }
-                        else if(m_GridForce == grid.Grid.Force.Implosion)
-                        {
-                            gameGrid.ApplyImplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
-                        }
-                        else
-                        {
-                            float rotation = transform.rotation.z * Mathf.Deg2Rad;
-                            Vector3 direction = Vector3.zero;
+                Debug.Assert(Lives >= 0);
+            }
+        }
 
-                            direction.x -= Mathf.Sin(rotation);
-                            direction.y += Mathf.Cos(rotation);
+        /// <summary>
+        /// Kill the entity
+        /// </summary>
+        private void KillEntity()
+        {
+            if (m_CurrentLives <= 0)
+            {
+                game.Camera gameCamera = Camera.main.GetComponent<game.Camera>();
+                gameCamera.Shake(m_CameraShakeScale);
 
-                            gameGrid.ApplyDirectedForce(direction * m_GridForceMagnitude, transform.position, m_GridForceRadius);
-                        }
-                    }
+                if (OnDeath(false))
+                {
+                    // delayed destroy
+                    StartCoroutine(DelayedDestroy());
+                }
+                else
+                {
+                    utils.Pool.Instance.Destroy(gameObject);
+                }
 
-                    if (m_CurrentLives <= 0)
-                    {
-                        game.Camera gameCamera = Camera.main.GetComponent<game.Camera>();
-                        gameCamera.Shake(m_CameraShakeScale);
+                m_CurrentLives = m_Lives;
+            }
+            else
+            {
+                ResetEntity();
+            }
+        }
 
-                        if(OnDeath(false))
-                        {
-                            // delayed destroy
-                            StartCoroutine(DelayedDestroy());
-                        }
-                        else
-                        {
-                            utils.Pool.Instance.Destroy(gameObject);
-                        }
-                    }
-                    else
-                    {
-                        ResetEntity();
-                    }
+        /// <summary>
+        /// Play the on death prefab effect
+        /// </summary>
+        private void PlayDeathPrefab()
+        {
+            if (m_OnDeathEffectPrefab)
+            {
+                GameObject effectGO = utils.Pool.Instance.Create(m_OnDeathEffectPrefab, transform.position);
+            }
+        }
+
+        /// <summary>
+        /// Apply the force to the grid
+        /// </summary>
+        private void ApplyGridForce()
+        {
+            grid.Grid gameGrid = grid.Grid.Instance;
+            if (gameGrid)
+            {
+                if (m_GridForce == grid.Grid.Force.Explosion)
+                {
+                    gameGrid.ApplyExplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
+                }
+                else if (m_GridForce == grid.Grid.Force.Implosion)
+                {
+                    gameGrid.ApplyImplosiveForce(m_GridForceMagnitude, transform.position, m_GridForceRadius);
+                }
+                else
+                {
+                    float rotation = transform.rotation.z * Mathf.Deg2Rad;
+                    Vector3 direction = Vector3.zero;
+
+                    direction.x -= Mathf.Sin(rotation);
+                    direction.y += Mathf.Cos(rotation);
+
+                    gameGrid.ApplyDirectedForce(direction * m_GridForceMagnitude, transform.position, m_GridForceRadius);
                 }
             }
         }
@@ -185,6 +211,8 @@ namespace entity
             m_CurrentLives = m_Lives;
 
             ResetEntity();
+
+            Debug.Assert(Lives == m_Lives);
         }
 
         /// <summary>

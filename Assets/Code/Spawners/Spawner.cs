@@ -46,7 +46,7 @@ namespace spawn
         public void ForEachSpawn(DoForEach forEach)
         {
             int i = transform.childCount - 1;
-            for(; i > 0; --i)
+            for(; i > -1; --i)
             {
                 Transform child = transform.GetChild(i);
                 forEach(child.gameObject);
